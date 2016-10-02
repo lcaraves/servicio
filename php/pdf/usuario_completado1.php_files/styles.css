@@ -1,0 +1,134 @@
+BODY{
+		scrollbar-arrow-color: #FFFFFF;
+		scrollbar-3dlight-color: #014076;
+		scrollbar-highlight-color: #FFFFFF;
+		scrollbar-face-color: #014076;
+		scrollbar-shadow-color: #014076;
+		scrollbar-darkshadow-color: #FFFFFF;
+		scrollbar-track-color: #DBDBDB;
+			background-color: #CCCCCC;
+			margin-left: 0px;
+			margin-top: 0px;
+			margin-right: 0px;
+			margin-bottom: 0px;
+}
+.Copyright {
+	font-family: Arial;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration: none;
+}
+.Copyright:hover {
+	color: #FF0000;
+	text-decoration: none;
+}
+.categorias {
+	font-family: Arial;
+	font-size: 11px;
+	color: #4D4D4D;
+	font-weight: normal;
+	text-decoration: none;
+}
+.categorias2 {
+	font-family: Arial;
+	font-size: 11px;
+	color: #FF0000;
+	font-weight: bold;
+	text-decoration: none;
+}
+.categorias2:hover {
+	color: #0061A1;
+}
+.categorias:hover {
+	color: #0061A1;
+}
+.categorias_celda {
+	padding-left:5px;
+	padding-right:5px;}
+
+.formularios {
+	font-family: Arial;
+	font-size: 11px;
+	color: #4D4D4D;
+	font-weight:bold;
+	text-decoration: none;
+	background-color: #E6E6E6;
+	padding-left:2px;
+	padding-right:2px;
+	border: 1px solid #4D4D4D;
+	text-align: left;
+	}
+.formularios2 {
+	font-family: Arial;
+	font-size: 11px;
+	color: #4D4D4D;
+	font-weight:bold;
+	text-decoration: none;
+	background-color: #E6E6E6;
+	padding-left:2px;
+	padding-right:2px;
+	border: 1px solid #4D4D4D;
+	text-align: left;
+}
+.formularios3 {
+	font-family: Arial;
+	font-size: 11px;
+	color: #4D4D4D;
+	font-weight:bold;
+	text-decoration: none;
+	background-color: #FFFFFF;
+	padding-left:2px;
+	padding-right:2px;
+	border: 1px solid #4D4D4D;
+	text-align: left;
+	}
+
+.titulo {
+	font-family: Arial;
+	font-size: 11px;
+	color: #0061A1;
+	font-weight: bold;
+	text-decoration: none;
+}
+.titulo:hover {
+	color: #FF0000;
+}
+.titulo_precio {
+	font-family: Arial;
+	font-size: 11px;
+	color: #FF0000;
+	text-decoration: none;
+	/*font-weight:bold;*/
+}
+.titulo_carrito{
+	font-family: Arial;
+	font-size: 11px;
+	color: #0061A1;
+	text-decoration: none;
+}
+.titulo_carrito:hover{
+	color: #FF0000;
+	text-decoration: none;
+}
+.productos_carrito{
+	font-family: Arial;
+	font-size: 11px;
+	color: #4D4D4D;
+	text-decoration: none;
+	font-weight:bold;
+}
+.productos_carrito_total{
+	font-family: Arial;
+	font-size: 11px;
+	color: #FF0000;
+	text-decoration: none;
+	font-weight:bold;
+}
+.descripcion {
+	font-family: Arial;
+	font-size: 10px;
+	color: #4D4D4D;
+	font-weight: normal;
+	text-decoration: none;
+}

@@ -1,0 +1,19 @@
+.result-buscar{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-left: 260px;
+	margin-right: 340px;
+	background-color: white;
+	padding: 5px;
+	color: #848484;
+	list-style: none; /*para Eliminar el punto del <li></li>*/	
+	border-radius: 5px; /*Redonder bordes*/
+
+}
+.result-buscar:hover{
+	color:#6C97F5;
+	background-color: white;
+	margin-bottom: 10px;
+	padding: 5px;
+	/*Pintamos las letas de color celeste.*/
+}
