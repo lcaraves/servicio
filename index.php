@@ -89,6 +89,7 @@
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="views/estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
               <li><a href="php/pdf/imprimir2.php">Imprimir Prueba</a></li>
+              <li><a href="views/estadisticas/listadoventaservicio.php">Pedido Ventas</a></li>
               <li role="separator" class="divider"></li>
               <li>
                 <a href="php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
@@ -118,7 +119,7 @@
               $consultaClientes = "SELECT * FROM clientes ORDER BY idCliente DESC";
               $resultadosCli = mysqli_query($conexion, $consultaClientes) or die("PROBLEMA CON LA CONSULTA DE CLIENTES."); 
              ?>
-           <select name="seleccionCliente" class="chosen form-control" data-placeholder="Seleccionar Cliente">
+           <select name="seleccionCliente" class="chosen form-control" data-placeholder="Seleccionar Cliente" required>
               <option value=""></option>
                 <?php while ($row = mysqli_fetch_array($resultadosCli)){ ?> 
                   <option value="<?php echo $row['idCliente'] ?>"><?php echo $row['nombre'] ." ". $row['apellido']."   - Tel: ( ". $row['telefono']." ) " ?></option>
@@ -630,7 +631,7 @@
                success: function(data)
                {
                   $("#form-alta")[0].reset();
-                  load(1);
+                  location.reload();
                }
              });
         e.preventDefault(); // avoid to execute the actual submit of the form.       

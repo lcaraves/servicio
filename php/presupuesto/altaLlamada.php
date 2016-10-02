@@ -8,8 +8,8 @@ if (isset($_REQUEST['notificado'])) {
 	$notificado = '';	
 }
 
-if (isset($_REQUEST['notificado'])) {
-	$observaciones = $_REQUEST['notificado'];
+if (isset($_REQUEST['observaciones'])) {
+	$observaciones = $_REQUEST['observaciones'];
 } else {
 	$observaciones = '';
 }

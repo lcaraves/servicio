@@ -1,12 +1,10 @@
-<?php 
+  <?php 
   require '../../php/conexion.php';
-  $consultaLlamadas = "SELECT * FROM llamadas l, productos p WHERE p.idProducto = l.idProducto AND l.idProducto = 137";
+  $consultaLlamadas = "SELECT * FROM llamadas l, productos p WHERE p.idProducto = l.idProducto AND l.idProducto = '$_REQUEST[idProducto]' ORDER BY l.idLlamada DESC";
   $resultLlamadas = mysqli_query($conexion, $consultaLlamadas) or die("PROBLEMA CON LA CONSULTA DE LLAMADAS.");
   $total = mysqli_num_rows($resultLlamadas);
-             
-echo "
 
-<div class='table-responsive'>
+$msj= "<div class='table-responsive'>
   <table class='table table-bordered table-hover'>
     <thead>
       <tr>
@@ -17,31 +15,28 @@ echo "
       </tr>
     </thead>
     <tbody>
-      <tr>"       
-
+      <tr>";
          if ($total == 0) {
-           "
-           <div class='alert alert-warning alert-dismissible' role='alert'>
+           $msj = $msj."<div class='alert alert-warning alert-dismissible' role='alert'>
               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span></button>
               <strong>Cuidado!</strong> No hay Registros Asociados con este Articulo.
             </div>";
-         } else {
-           while ($row = mysqli_fetch_array($resultLlamadas)){."
          
-        <td><?php echo $row['idLlamada'] ?></td>
-        <td><?php echo $row['fechaHoraLlamada'] ?></td>
-        <td><?php echo $row['observaciones'] ?></td>
-        <td><?php echo $row['notificado'] ?></td>
-      </tr>
-    </tbody>". 
-      }
-        }
-        mysqli_close($conexion);."
+         } else {
+           while ($row = mysqli_fetch_array($resultLlamadas)){
+        $msj = $msj." 
+        <td>". $row['idLlamada'] ."</td>
+        <td>". $row['fechaHoraLlamada']."</td>
+        <td>". $row['observaciones']."</td>
+        <td>". $row['notificado']."</td>
+      </tr>";
+	  }
+	  }
+    $msj = $msj."</tbody>  
   </table>
-</div>   
-";
-
+</div>";
+echo $msj;
+mysqli_close($conexion);
 ?>
-
 

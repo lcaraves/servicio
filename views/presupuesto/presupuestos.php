@@ -138,7 +138,7 @@
               <tbody class="buscar">
                 <tr class="<?php if ($row['estado'] ==3) {
                   echo "success";
-                } else {
+                  } else {
                       if ($row['estado'] ==2) {
                         echo "warning";
                       } else {
@@ -150,8 +150,8 @@
                         
                       }
                       
-                }
-                 ?>">
+                    }
+                    ?>">
                     <td> <?php echo $row['idProducto'] ?> </td>
                     <td> <?php echo $row['nombre'] ." ".$row['apellido'] ?> </td>
                     <td> <?php echo $row['articulo'] ?> </td>
@@ -167,14 +167,22 @@
                             </button>
                             <ul class="dropdown-menu">
                               <li class="dropdown-header">Presupuesto</li>
-                              <li id="<?php echo $row['idProducto'] ?>" class="agregarpresupuesto" data-toggle="modal" data-target="#altaPresupuesto"><a href="#">
-                               <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Agregar</a></li>  
-                              <li id="<?php echo $row['idProducto'] ?>" class="agregarllamada" data-toggle="modal" data-target="#altallamada"><a href="#">
-                               <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Llamadas</a></li>  
-                               <form method="POST" action="../../php/presupuesto/historialLlamadas.php">
-                                  <li id="<?php echo $row['idProducto'] ?>" class="agregarllamada" data-toggle="modal" data-target="#llamadaHistorial"><a href="#">
-                                  <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Historial Llamadas</a></li>  
-                               </form>
+                              <li id="<?php echo $row['idProducto'] ?>" class="agregarpresupuesto" data-toggle="modal" data-target="#altaPresupuesto">
+                                  <a href="#">
+                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Agregar
+                                  </a>
+                              </li>  
+                              <li class="agregarllamada" data-toggle="modal" data-target="#altallamada" id="<?php echo $row['idProducto'] ?>">
+                                <a href="#">
+                                  <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Llamadas
+                                </a>
+                              </li>  
+                              <form method="POST" action="../../php/presupuesto/historialLlamadas.php" id="llamadas">
+                                <li data-toggle="modal" data-target="#llamadaHistorial">
+									               <input type="hidden" name="idProducto" value='<?php echo $row['idProducto'];?>'>
+									               <input type="submit"  value="HLLamada">	
+								                </li>  
+                              </form>
                             </ul>
                           </li>
                         </ul>
@@ -182,10 +190,10 @@
                     </td>
                 </tr>  
               </tbody>
-              <?php 
-                } 
-                mysqli_close($conexion);
-              ?>
+                <?php 
+                  } 
+                  mysqli_close($conexion);
+                ?>
             </table>
           </div>
         </div>
@@ -272,12 +280,13 @@
 <?php include("modal_agregar_clientes.php");?>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function(e) {
      $('.agregarpresupuesto').click(function () {
             
         var idCliente = $(this).attr('id');
         $('#id_agregarPresupuesto').val(idCliente);
       });
+     
      $('.agregarllamada').click(function () {
             
         var idCliente = $(this).attr('id');
@@ -322,6 +331,37 @@
         }).show();
       }); 
 
+      //ALta de CLIENTE
+      $("#form-alta").submit(function(e) {
+          var url = "../../php/clientes/altaCliente.php"; // the script where you handle the form input.
+          $.ajax({
+                 type: "POST",
+                 url: url,
+                 data: $("#form-alta").serialize(), // serializes the form's elements.
+                 success: function(data)
+                 {
+                    $("#form-alta")[0].reset();
+                 }
+               });
+          e.preventDefault(); // avoid to execute the actual submit of the form.       
+      });
+	
+	     //historial de llamdas.
+      $("#llamadas").click(function(e) {
+          var url = "../../php/presupuesto/historialLlamadas.php";
+          var type = "POST";
+          $.ajax({
+                 type: type,
+                 url: url,
+                 data: $(this).serialize(), 
+                 success: function(data)
+                 {
+                    $("#mostrarTabla").html(data);
+                 }
+               });
+          e.preventDefault();
+      });
+
       //ALTA de NOTEBBOK
       $( "#form-guardar-AltaNotebook" ).submit(function( event ) {
         var parametros = $(this).serialize();
@@ -329,9 +369,6 @@
             type: "POST",
             url: "../../php/presupuesto/altaNotebook.php",
             data: parametros,
-             beforeSend: function(objeto){
-              $("#ajax_register_Note").html("Mensaje: Cargando...");
-              },
             success: function(datos){
             $("#ajax_register_Note").html(datos);
             load(1);
@@ -347,10 +384,7 @@
             type: "POST",
             url: "../../php/presupuesto/altaNetbook.php",
             data: parametros,
-             beforeSend: function(objeto){
-              $("#ajax_register_Net").html("Mensaje: Cargando...");
-              },
-            success: function(datos){
+              success: function(datos){
             $("#ajax_register_Net").html(datos);
             
             load(1);
@@ -366,31 +400,12 @@
             type: "POST",
             url: "../../php/presupuesto/altaMonitor.php",
             data: parametros,
-             beforeSend: function(objeto){
-              $("#ajax_register_Monitor").html("Mensaje: Cargando...");
-              },
-            success: function(datos){
-            $("#ajax_register_Monitor").html(datos);
-            
-            load(1);
-            }
+              success: function(datos){
+                $("#ajax_register_Monitor").html(datos);
+                load(1);
+              }
         });
         event.preventDefault();
-      });
-
-      //ALta de CLIENTE
-      $("#form-alta").submit(function(e) {
-          var url = "../../php/clientes/altaCliente.php"; // the script where you handle the form input.
-          $.ajax({
-                 type: "POST",
-                 url: url,
-                 data: $("#form-alta").serialize(), // serializes the form's elements.
-                 success: function(data)
-                 {
-                    $("#form-alta")[0].reset();
-                 }
-               });
-          e.preventDefault(); // avoid to execute the actual submit of the form.       
       });
   });
 </script>

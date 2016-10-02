@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Clientes</title>
+	<title>Listado</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,8 +19,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
-  <script type="text/javascript" src="../../js/ModelCliente.js"></script>
+  <script src="../../js/estadisticas/listadopedido.js"></script>
 </head>
 <body>
 <?php 
@@ -30,8 +29,8 @@
     }
  
   require_once '../../php/conexion.php';
-  $consultaClientes = "SELECT * FROM clientes ORDER BY idCliente DESC";
-  $resultadosCli = mysqli_query($conexion, $consultaClientes) or die("PROBLEMA CON LA CONSULTA DE CLIENTES.");
+  $consultaPedido = "SELECT * FROM pedidoservicio ORDER BY idPedidoServicio DESC";
+  $resultadosPed = mysqli_query($conexion, $consultaPedido) or die("PROBLEMA CON LA CONSULTA DE CLIENTES.");
   
  ?>  
 	<div class="container theme-showcase" role="main" id="actualizar-clientes">
@@ -49,7 +48,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../../index.php">Nueva Orden</a></li>
-            <li><a href="clientes.php">Clientes</a></li>          
+            <li><a href="../clientes/clientes.php">Clientes</a></li>          
           </ul>
           <div class="dropdown navbar-right">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -70,7 +69,7 @@
               <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
               <li role="separator" class="divider"></li>
               <li>
-                <a href="php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
+                <a href="../../php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
               </li>
             </ul>
           </div>
@@ -85,12 +84,12 @@
        <div class="form-group col-xs-11"> 
          <div class="input-group col-xs-5">
           <span class="input-group-addon">Buscar</span>
-          <input id="filtrar" type="text" class="form-control" placeholder="Ingresa el nombre del  que deseas Buscar...">
+          <input id="filtrar" type="text" class="form-control" placeholder="Ingresa el articulo que desea Buscar...">
         </div>
       </div>
       <div class="form-group">
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaCliente">
-            <span class="glyphicon glyphicon-plus"></span>  Cliente
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaPedido">
+            <span class="glyphicon glyphicon-plus"></span>  Pedido
         </button>
       </div>
     </div>
@@ -99,37 +98,38 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>Localidad</th>
-            <th>Provincia</th>
+            <th>#</th>
+            <th>Articulo</th>
+            <th>Fecha</th>
+            <th>Estado</th>
             <th>Acción</th>
           </tr>
         </thead>
-          <?php while ($row = mysqli_fetch_array($resultadosCli)){ ?>
+          <?php while ($row = mysqli_fetch_array($resultadosPed)){ ?>
           <tbody class="buscar">
-            <tr id="ocultarCeldaEliminada" class="<?php echo $row['idCliente'] ?> mostrarCliente">
-              <td id="nombre_<?php echo $row['idCliente'] ?>"> <?php echo $row['nombre'] ?> </td>
-              <td id="apellido_<?php echo $row['idCliente'] ?>"> <?php echo $row['apellido'] ?> </td>
-              <td id="direccion_<?php echo $row['idCliente'] ?>"> <?php echo $row['direccion'] ?> </td>
-              <td id="telefono_<?php echo $row['idCliente'] ?>"> <?php echo $row['telefono'] ?> </td>
-              <td id="email_<?php echo $row['idCliente'] ?>"> <?php echo $row['email'] ?> </td>
-              <td id="localidad_<?php echo $row['idCliente'] ?>"> <?php echo $row['localidad'] ?> </td>
-              <td id="provincia_<?php echo $row['idCliente'] ?>"> <?php echo $row['provincia'] ?> </td>
+            <tr id="<?php echo $row['idPedidoServicio'] ?>">
+              <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
+              <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['articulo_pedido'] ?> </td>
+              <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['fecha_pedido'] ?> </td>
+              <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
               <td>
-                <div class="form-inline">
-
-                  <button type="button" class="btn btn-default eliminarCliente" id='<?php echo $row['idCliente']?>' data-toggle="modal" data-target="#modalEliminarCliente" title="Eliminar Cliente">
-                    <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
-                  </button>              
-                  <button type="button" class="btn btn-primary modificarCliente" id="<?php echo $row['idCliente'] ?>" data-toggle="modal" data-target="#modalModificar" title="Modificar Cliente">  
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                  </button>
+                <div class="btn-group">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li data-toggle="modal" data-target="#modificarPedido">
+                            <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+                              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
+                            </a>
+                        </li>  
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
-              </td>   
+               </td>
             </tr>
           </tbody>  
           <?php 
@@ -153,7 +153,8 @@
     </footer>
 </body>
 </html>
-  
-  <?php include("modal_agregar_clientes.php");?>
-  <?php include("modal_modificar_clientes.php");?>
-  <?php include("modal_eliminar_clientes.php");?>
+
+<?php include("modal_listado/modal_agregar_pedido.php");?>
+<?php include("modal_listado/modal_modificar_pedido.php");?>
+
+
