@@ -28,7 +28,7 @@
                   <select name="estado_pedido" class="form-control">
                       <option value="Se vendio">Se vendio</option>
                       <option value="En Servicio Tecnico">En Servicio Tecnico</option>
-                      <option value="">Se Devolvio</option>
+                      <option value="Se Devolvio">Se Devolvio</option>
                     </select>  
                 </div>
               </div>
