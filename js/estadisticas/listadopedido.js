@@ -19,7 +19,7 @@ $(document).ready(function() {
    			data: $("#form-alta-pedido").serialize(), // serializes the form's elements.
                success: function(data)
                {                  
-                  location.reload();
+                  $("#msj_alta_pedido").html(data);
                }
    		})
 	 	e.preventDefault();	   	
@@ -31,10 +31,13 @@ $(document).ready(function() {
 	  var idPedidoServicio = $(this).attr('id');
 	  var articulo_pedido = $('#articulo_' + idPedidoServicio).text();
 	  var fecha_pedido = $('#fecha_' + idPedidoServicio).text();
+	  var nropresupuesto_pedido = $('#nropresupuesto_' + idPedidoServicio).text();
 	  
 	  $('#idPedidoServicio_update').val(idPedidoServicio);
 	  $('#articulo_pedido_update').val(articulo_pedido);
 	  $('#fecha_pedido_update').val(fecha_pedido);
+	  $('#nropresupuesto_pedido_update').val(nropresupuesto_pedido);
+	  
 	});
 
 	//Modificar Pedido 
@@ -47,7 +50,8 @@ $(document).ready(function() {
 	         data: $("#form-pedido-modif").serialize(), // serializes the form's elements.
 	         success: function(data)
 	         {
-	            location.reload();
+	         	$("#msj_modificar_pedido").html(data);
+	            //location.reload();
 	         }
 	       });
 

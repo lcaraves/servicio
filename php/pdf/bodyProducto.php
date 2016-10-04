@@ -1,6 +1,6 @@
 <?php
   require_once '../conexion.php';
-  $consultaCliente = "SELECT * FROM clientes c, productos p WHERE c.idCliente = p.idCliente and c.idCliente = 1";
+  $consultaCliente = "SELECT * FROM clientes c, productos p WHERE c.idCliente = p.idCliente and c.idCliente = 105";
   $resultadosClientes = mysqli_query($conexion, $consultaCliente) or die("PROBLEMA CON LA CONSULTA DE CLIENTES");
   while ($row = mysqli_fetch_array($resultadosClientes)) {
     

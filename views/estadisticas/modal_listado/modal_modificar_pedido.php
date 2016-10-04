@@ -10,6 +10,7 @@
         <div class="modal-body">
           <div class="form-horizontal">
               <input type="hidden" name="idPedidoServicio" id="idPedidoServicio_update">
+              <div id="msj_modificar_pedido"></div>
               <div class="row form-group">
                 <label for="" class="control-label col-sm-3">*Artículo</label>
                 <div class="col-sm-6">
@@ -20,6 +21,12 @@
                 <label for="" class="control-label col-sm-3">*Fecha Pedido</label>
                 <div class="col-sm-6">
                   <input type="date" class="form-control" id="fecha_pedido_update" name="fecha_pedido" disabled>
+                </div>
+              </div>
+               <div class="row form-group">
+                <label for="" class="control-label col-sm-3">Nro Presupuesto</label>
+                <div class="col-sm-6">
+                  <input type="date" class="form-control" id="nropresupuesto_pedido_update" name="nropresupuesto_pedido">
                 </div>
               </div>
               <div class="row form-group">

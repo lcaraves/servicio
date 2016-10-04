@@ -3,14 +3,44 @@
 	//Datos a modificar
 	$idPedidoServicio = $_REQUEST['idPedidoServicio'];
 	$articulo_pedido = $_REQUEST['articulo_pedido'];
+	$nropresupuesto_pedido = $_REQUEST['nropresupuesto_pedido'];
 	$estado_pedido = $_REQUEST['estado_pedido'];
 
-	$consulta = "UPDATE pedidoservicio SET 
+	if (strlen($nropresupuesto_pedido) > 7) {
+		$errors[] = "El nro de presupuesto debe ser menor que 7.";
+	}
+
+	if (isset($errors)) {
+		?>
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>Error!</strong> 
+			<?php
+				foreach ($errors as $error) {
+					echo $error;
+				}
+			?>
+		</div>
+	<?php	
+	} else {
+		$consulta = "UPDATE pedidoservicio SET 
 					articulo_pedido ='".$articulo_pedido."', 
-					estado_pedido='".$estado_pedido."' 
+					nropresupuesto_pedido ='".$nropresupuesto_pedido."',
+					estado_pedido ='".$estado_pedido."' 
 					WHERE idPedidoServicio =".$idPedidoServicio;
 
-	mysqli_query($conexion, $consulta) or die("Problema con la consulta de ACTUALIZACION de PEDIDO".mysql_error($consulta));
-	echo "Actualización realiza con total normalidad.";
+	mysqli_query($conexion, $consulta) or die("Problema con la consulta de ACTUALIZACION de PEDIDO".mysql_error($consulta));	
+	
+	?>
+	<div class="alert alert-success" role="alert">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>¡Bien hecho!</strong>
+					<?php
+						echo "La modificacion se realiza con total normalidad."; 
+					?>
+			</div>
+<?php
+	}
 	mysqli_close($conexion);	
- ?>
+	?>
+ 

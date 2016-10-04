@@ -9,6 +9,7 @@
         <!-- Ventana MODAL -->
         <div class="modal-body">
           <div class="form-horizontal">
+              <div id="msj_alta_pedido"></div>
               <div class="row form-group">
                 <p class="col-sm-8"><small><strong>*</strong>Campos Obligatorios</small></p>
               </div>
@@ -22,6 +23,12 @@
                 <label for="" class="control-label col-sm-3">*Fecha Pedido</label>
                 <div class="col-sm-6">
                   <input type="date" class="form-control" name="fecha_pedido" value="<?php $fecha2=time()-18000; echo date("Y-m-d_H:i:s",$fecha2); ?>" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <label for="" class="control-label col-sm-3">Nro Presupuesto</label>
+                <div class="col-sm-6">
+                  <input type="date" class="form-control" name="nropresupuesto_pedido">
                 </div>
               </div>
               <div class="row form-group">

@@ -20,12 +20,29 @@
 		$estado_pedido = '';
 	}
 
-	$consulta = "INSERT INTO pedidoservicio (articulo_pedido, fecha_pedido, estado_pedido) 
+	if (isset($_REQUEST['nropresupuesto_pedido'])) {
+		$nropresupuesto_pedido = $_REQUEST['nropresupuesto_pedido'];
+	} else {
+		$nropresupuesto_pedido = '';
+	}
+
+	$consulta = "INSERT INTO pedidoservicio (articulo_pedido, fecha_pedido, nropresupuesto_pedido, estado_pedido) 
 					VALUES (
 					'$articulo_pedido',
 					'$fecha_pedido',
+					'$nropresupuesto_pedido',
 					'$estado_pedido')";
 	mysqli_query($conexion, $consulta) or die("Problemas: Consulta --> ALTA DE PEDIDO DE SERVICIO TECNICO".mysqli_error($conexion));
-	echo "El ALTA  de PEDIDO, se realizo correctamente.";
-	mysqli_close($conexion);
 ?>
+
+	<div class="alert alert-success" role="alert">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>¡Bien hecho!</strong>
+			<?php
+				echo "Alta de Pedido de Servicio Realizada con Éxito!";
+			?>
+	</div>
+			<?php
+				mysqli_close($conexion);
+	
+			?>

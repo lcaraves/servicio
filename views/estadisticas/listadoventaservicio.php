@@ -29,7 +29,7 @@
     }
  
   require_once '../../php/conexion.php';
-  $consultaPedido = "SELECT * FROM pedidoservicio ORDER BY idPedidoServicio DESC";
+  $consultaPedido = "SELECT * FROM pedidoservicio ORDER BY idPedidoServicio DESC LIMIT 50";
   $resultadosPed = mysqli_query($conexion, $consultaPedido) or die("PROBLEMA CON LA CONSULTA DE CLIENTES.");
   
  ?>  
@@ -102,6 +102,7 @@
             <th>Articulo</th>
             <th>Fecha</th>
             <th>Estado</th>
+            <th>Nº Preseupuesto</th>
             <th>Acción</th>
           </tr>
         </thead>
@@ -111,7 +112,8 @@
               <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
               <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['articulo_pedido'] ?> </td>
               <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['fecha_pedido'] ?> </td>
-              <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
+               <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
+              <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['nropresupuesto_pedido'] ?> </td>
               <td>
                 <div class="btn-group">
                   <ul class="nav navbar-nav navbar-right">
