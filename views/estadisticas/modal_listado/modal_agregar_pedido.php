@@ -34,7 +34,7 @@
                <div class="row form-group">
                 <label for="" class="control-label col-sm-3">Fecha Salida</label>
                 <div class="col-sm-6">
-                  <input type="date" class="form-control" name="fecha_salida_pedido">
+                  <input type="date" class="form-control datepicker" name="fecha_salida_pedido" >
                 </div>
               </div>
               <div class="row form-group">

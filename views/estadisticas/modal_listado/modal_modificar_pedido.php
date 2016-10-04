@@ -26,7 +26,13 @@
                <div class="row form-group">
                 <label for="" class="control-label col-sm-3">Nro Presupuesto</label>
                 <div class="col-sm-6">
-                  <input type="date" class="form-control" id="nropresupuesto_pedido_update" name="nropresupuesto_pedido">
+                  <input type="text" class="form-control" id="nropresupuesto_pedido_update" name="nropresupuesto_pedido">
+                </div>
+              </div>
+               <div class="row form-group">
+                <label for="" class="control-label col-sm-3">Fecha Salida</label>
+                <div class="col-sm-6">
+                  <input type="date" class="form-control datepicker" id="fecha_salida_pedido_update" name="fecha_salida_pedido">
                 </div>
               </div>
               <div class="row form-group">

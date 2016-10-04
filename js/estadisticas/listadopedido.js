@@ -32,11 +32,13 @@ $(document).ready(function() {
 	  var articulo_pedido = $('#articulo_' + idPedidoServicio).text();
 	  var fecha_pedido = $('#fecha_' + idPedidoServicio).text();
 	  var nropresupuesto_pedido = $('#nropresupuesto_' + idPedidoServicio).text();
+	  var fecha_salida_pedido = $('#fecha_salida_pedido' + idPedidoServicio).text();
 	  
 	  $('#idPedidoServicio_update').val(idPedidoServicio);
 	  $('#articulo_pedido_update').val(articulo_pedido);
 	  $('#fecha_pedido_update').val(fecha_pedido);
 	  $('#nropresupuesto_pedido_update').val(nropresupuesto_pedido);
+	  $('#fecha_salida_pedido_update').val(fecha_salida_pedido);
 	  
 	});
 
@@ -56,7 +58,11 @@ $(document).ready(function() {
 	       });
 
 	  e.preventDefault(); // avoid to execute the actual submit of the form.
-	});   	
+	}); 
+
+   	$(".datepicker").datepicker();
+
+
 });
 
 

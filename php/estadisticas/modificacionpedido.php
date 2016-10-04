@@ -5,6 +5,7 @@
 	$articulo_pedido = $_REQUEST['articulo_pedido'];
 	$nropresupuesto_pedido = $_REQUEST['nropresupuesto_pedido'];
 	$estado_pedido = $_REQUEST['estado_pedido'];
+	$fecha_salida_pedido =$_REQUEST['fecha_salida_pedido'];
 
 	if (strlen($nropresupuesto_pedido) > 7) {
 		$errors[] = "El nro de presupuesto debe ser menor que 7.";
@@ -26,7 +27,8 @@
 		$consulta = "UPDATE pedidoservicio SET 
 					articulo_pedido ='".$articulo_pedido."', 
 					nropresupuesto_pedido ='".$nropresupuesto_pedido."',
-					estado_pedido ='".$estado_pedido."' 
+					estado_pedido ='".$estado_pedido."',
+					fecha_salida_pedido ='".$fecha_salida_pedido."' 
 					WHERE idPedidoServicio =".$idPedidoServicio;
 
 	mysqli_query($conexion, $consulta) or die("Problema con la consulta de ACTUALIZACION de PEDIDO".mysql_error($consulta));	
