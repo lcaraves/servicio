@@ -100,9 +100,10 @@
           <tr>
             <th>#</th>
             <th>Articulo</th>
-            <th>Fecha</th>
+            <th>Fecha Ingreso</th>
             <th>Estado</th>
             <th>Nº Preseupuesto</th>
+            <th>Fecha Salida</th>
             <th>Acción</th>
           </tr>
         </thead>
@@ -112,8 +113,9 @@
               <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
               <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['articulo_pedido'] ?> </td>
               <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['fecha_pedido'] ?> </td>
-               <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
+              <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
               <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['nropresupuesto_pedido'] ?> </td>
+              <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>"><?php echo $row['fecha_salida_pedido'] ?></td>
               <td>
                 <div class="btn-group">
                   <ul class="nav navbar-nav navbar-right">
