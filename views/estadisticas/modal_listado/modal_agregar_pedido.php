@@ -14,13 +14,13 @@
                 <p class="col-sm-8"><small><strong>*</strong>Campos Obligatorios</small></p>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-3">*Artículo</label>
+                <label for="" class="control-label col-sm-3">* Artículo</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" name="articulo_pedido" required>
+                  <input type="text" class="form-control" name="articulo_pedido">
                 </div>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-3">*Fecha Pedido</label>
+                <label for="" class="control-label col-sm-3">* Fecha Pedido</label>
                 <div class="col-sm-6">
                   <input type="date" class="form-control" name="fecha_pedido" value="<?php $fecha2=time()-18000; echo date("Y-m-d_H:i:s",$fecha2); ?>" required>
                 </div>
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-3">Estado</label>
+                <label for="" class="control-label col-sm-3">* Estado</label>
                 <div class="col-sm-6">
                   <select name="estado_pedido" id="" class="form-control">
                       <option value=""></option>

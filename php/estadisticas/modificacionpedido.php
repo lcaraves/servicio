@@ -8,14 +8,15 @@
 	$fecha_salida_pedido =$_REQUEST['fecha_salida_pedido'];
 
 	if (strlen($nropresupuesto_pedido) > 7) {
-		$errors[] = "El nro de presupuesto debe ser menor que 7.";
+		$errors[] = "</br> El nro de presupuesto debe ser menor que 7. </br>";
 	}
 
+	//Control --> Validacion
 	if (isset($errors)) {
 		?>
 		<div class="alert alert-danger" role="alert">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<strong>Error!</strong> 
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong> Error!!</strong> 
 			<?php
 				foreach ($errors as $error) {
 					echo $error;
@@ -32,7 +33,7 @@
 					WHERE idPedidoServicio =".$idPedidoServicio;
 
 	mysqli_query($conexion, $consulta) or die("Problema con la consulta de ACTUALIZACION de PEDIDO".mysql_error($consulta));	
-	
+	mysqli_close($conexion);
 	?>
 	<div class="alert alert-success" role="alert">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -43,6 +44,6 @@
 			</div>
 <?php
 	}
-	mysqli_close($conexion);	
+		
 	?>
  
