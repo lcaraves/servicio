@@ -9,6 +9,8 @@
 	$marcaImpresora = $_REQUEST['select9'];
 	$comentariosOtrosArticulos = $_REQUEST['comentariosOtros'];
 
+	
+
 	if ($tipoArticulo == "PC - Escritorio") {
 		$articuloNuevo = $_REQUEST['select1'];
 	} else {
@@ -367,27 +369,51 @@
 	}
 	
 	
-	if (isset($_REQUEST['accesorios'])) {
-		$accesorios = $_REQUEST['accesorios'];
+	if (!empty($_REQUEST['accesorios'])) {
+		if (strlen($_REQUEST['accesorios'])> 45) {
+			$errors [] = " El campo <strong>accesorios</strong>, es mayor que 45 Caracteres. </br>";
+			$accesorios = $_REQUEST['accesorios']; 		
+		} else{
+			$accesorios = $_REQUEST['accesorios']; 		
 		}
-		else{
+		} else{
 		$accesorios = 'No tiene accesorios';
 	}
-	
-	if (isset($_REQUEST['serial'])) {
-		$serial = $_REQUEST['serial'];	
+
+	if (!empty($_REQUEST['serial'])) {
+		if (strlen($_REQUEST['serial'])> 30) {
+			$errors [] = " El campo <strong>serial</strong>, es mayor que 30 Caracteres. </br>";
+			$accesorios = $_REQUEST['serial']; 		
+		} else{
+			$accesorios = $_REQUEST['serial']; 		
 		}
-		else{
-		$serial = 'No se agrego';
-	}
+	}else{
+		$serial = 'No se agrego Serial';
+		}
 	
-	if (isset($_REQUEST['codigo'])) {
-		$codigo = $_REQUEST['codigo'];	
+	if (!empty($_REQUEST['codigo'])) {
+		if (strlen($_REQUEST['codigo'])> 30) {
+			$errors [] = " El campo <strong>Codigo</strong>, es mayor que 30 Caracteres. </br>";
+			$codigo = $_REQUEST['codigo']; 		
+		} else{
+			$codigo = $_REQUEST['codigo'];}
 		}
 		else{
 			$codigo = 'No se agrego';
 	}
 
+	if (!empty($_REQUEST['estadoEquipo'])) {
+		if (strlen($_REQUEST['estadoEquipo'])> 60) {
+			$errors [] = " El campo <strong>Estado del Equipo</strong>, es mayor que 60 Caracteres. </br>";
+			$estadoEquipo = $_REQUEST['estadoEquipo']; 		
+		} else{
+			$estadoEquipo = $_REQUEST['estadoEquipo'];}
+		}
+		else{
+			$estadoEquipo = 'No se agrego Estado del Equipo';
+	}
+
+	//------------------------------------------------
 	// Programas a instalar
 	if (isset($_REQUEST['sistemaOperativo'])) {
 		$sistemaOperativo = $_REQUEST['sistemaOperativo'];	
@@ -614,32 +640,35 @@
 	$fallaCliente = $_REQUEST['fallaCliente'];
 	if (!empty($fallaCliente)) {
 		if (strlen($fallaCliente)>160) {
-			$errors [] = "El campo Falla de Cliente es mayor que 160 Caracteres.";
+			$errors [] = " El campo, <strong>Falla de Cliente</strong> es mayor que 160 Caracteres.</br>";
 		} 
 	} else{
 		$errors [] = "El campo esta vacio.";
 	}
 	
+	if (!empty($_REQUEST['seleccionCliente'])) {
+		$consultaProductos = "INSERT INTO productos (articulo, fallaCliente, estadoEquipo, serial,idCliente , fechaIngreso, accesorios, codigo, horarioLlamada, instaladores ) 
+							  VALUES
+							  (
+							  	'$articuloNuevo',
+								'$fallaCliente',
+								'$estadoEquipo',
+								'$serial',
+								'$_REQUEST[seleccionCliente]',
+								'$_REQUEST[fechaIngreso]',
+								'$accesorios',
+								'$codigo',
+								'$_REQUEST[horarioLlamada]',
+								'$instaladores'
+							  )";
+		mysqli_query($conexion, $consultaProductos) or die ("Problemas -->".mysqli_error($conexion));
+		$msj [] = "El Registro de Orden de Servicio se ha realizado Correctamente.";
+		mysqli_close($conexion);
+	}else{
+		$errors [] = "Debe seleccionar un <strong>Cliente</strong>";
+	}
 	
 	
-	$consultaProductos = "INSERT INTO productos (articulo, fallaCliente, estadoEquipo, serial,idCliente , fechaIngreso, accesorios, codigo, horarioLlamada, instaladores ) 
-						  VALUES
-						  (
-						  	'$articuloNuevo',
-							'$fallaCliente',
-							'$_REQUEST[estadoEquipo]',
-							'$serial',
-							'$_REQUEST[seleccionCliente]',
-							'$_REQUEST[fechaIngreso]',
-							'$accesorios',
-							'$codigo',
-							'$_REQUEST[horarioLlamada]',
-							'$instaladores'
-						  )";
-	mysqli_query($conexion, $consultaProductos) or die ("Problemas -->".mysqli_error($conexion));
-	$msj [] = "El Registro de Orden de Servicio se ha realizado Correctamente.";
-	mysqli_close($conexion);
- 
 
 	if (isset($msj)) {
 	?>	

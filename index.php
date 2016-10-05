@@ -120,7 +120,7 @@
               $consultaClientes = "SELECT * FROM clientes ORDER BY idCliente DESC";
               $resultadosCli = mysqli_query($conexion, $consultaClientes) or die("PROBLEMA CON LA CONSULTA DE CLIENTES."); 
              ?>
-           <select name="seleccionCliente" class="chosen form-control" data-placeholder="Seleccionar Cliente" required>
+           <select name="seleccionCliente" class="chosen form-control" data-placeholder="Seleccionar Cliente">
               <option value=""></option>
                 <?php while ($row = mysqli_fetch_array($resultadosCli)){ ?> 
                   <option value="<?php echo $row['idCliente'] ?>"><?php echo $row['nombre'] ." ". $row['apellido']."   - Tel: ( ". $row['telefono']." ) " ?></option>
