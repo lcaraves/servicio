@@ -344,7 +344,7 @@
                 <div class='form-group'>
                   <label class='control-label col-xs-3' for=''>Falla del Cliente</label>
                   <div class='col-xs-5'>
-                    <input type='text' name='fallaCliente' id='' class='form-control' autocomplete="off" required>
+                    <input type='text' name='fallaCliente' id='' class='form-control' autocomplete="off">
                   </div>
                 </div><!-- end div form-group -->
                 <input type='hidden' name='fechaIngreso' id=''  value="<?php $fecha2=time()-18000; echo date("Y-m-d_H:i:s",$fecha2); ?>">

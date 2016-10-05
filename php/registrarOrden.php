@@ -371,7 +371,7 @@
 	
 	if (!empty($_REQUEST['accesorios'])) {
 		if (strlen($_REQUEST['accesorios'])> 45) {
-			$errors [] = " El campo <strong>accesorios</strong>, es mayor que 45 Caracteres. </br>";
+			$errors [] = "</br> El campo <strong>accesorios</strong>, es mayor que 45 Caracteres. </br>";
 			$accesorios = $_REQUEST['accesorios']; 		
 		} else{
 			$accesorios = $_REQUEST['accesorios']; 		
@@ -382,18 +382,18 @@
 
 	if (!empty($_REQUEST['serial'])) {
 		if (strlen($_REQUEST['serial'])> 30) {
-			$errors [] = " El campo <strong>serial</strong>, es mayor que 30 Caracteres. </br>";
+			$errors [] = "</br> El campo <strong>serial</strong>, es mayor que 30 Caracteres. </br>";
 			$accesorios = $_REQUEST['serial']; 		
 		} else{
 			$accesorios = $_REQUEST['serial']; 		
 		}
-	}else{
+		}else{
 		$serial = 'No se agrego Serial';
 		}
 	
 	if (!empty($_REQUEST['codigo'])) {
 		if (strlen($_REQUEST['codigo'])> 30) {
-			$errors [] = " El campo <strong>Codigo</strong>, es mayor que 30 Caracteres. </br>";
+			$errors [] = " </br> El campo <strong>Codigo</strong>, es mayor que 30 Caracteres. </br>";
 			$codigo = $_REQUEST['codigo']; 		
 		} else{
 			$codigo = $_REQUEST['codigo'];}
@@ -404,7 +404,7 @@
 
 	if (!empty($_REQUEST['estadoEquipo'])) {
 		if (strlen($_REQUEST['estadoEquipo'])> 60) {
-			$errors [] = " El campo <strong>Estado del Equipo</strong>, es mayor que 60 Caracteres. </br>";
+			$errors [] = "</br> El campo <strong>Estado del Equipo</strong>, es mayor que 60 Caracteres. </br>";
 			$estadoEquipo = $_REQUEST['estadoEquipo']; 		
 		} else{
 			$estadoEquipo = $_REQUEST['estadoEquipo'];}
@@ -412,7 +412,13 @@
 		else{
 			$estadoEquipo = 'No se agrego Estado del Equipo';
 	}
-
+	
+	if (!empty($_REQUEST['horarioLlamada'])) {
+		$horarioLlamada = $_REQUEST['horarioLlamada'];
+		}
+		else{
+			$horarioLlamada = 'Mañana - Tarde';
+	}
 	//------------------------------------------------
 	// Programas a instalar
 	if (isset($_REQUEST['sistemaOperativo'])) {
@@ -636,14 +642,14 @@
 		}
 		
 	}
-	
+	//Campo --> FALLA CLIENTE
 	$fallaCliente = $_REQUEST['fallaCliente'];
 	if (!empty($fallaCliente)) {
 		if (strlen($fallaCliente)>160) {
-			$errors [] = " El campo, <strong>Falla de Cliente</strong> es mayor que 160 Caracteres.</br>";
+			$errors [] = " </br>El campo, <strong>Falla de Cliente</strong> es mayor que 160 Caracteres.</br>";
 		} 
 	} else{
-		$errors [] = "El campo esta vacio.";
+		$errors [] = "</br> El campo, <strong>Falla del Cliente</strong> esta vacio! </br>";
 	}
 	
 	if (!empty($_REQUEST['seleccionCliente'])) {
@@ -658,7 +664,7 @@
 								'$_REQUEST[fechaIngreso]',
 								'$accesorios',
 								'$codigo',
-								'$_REQUEST[horarioLlamada]',
+								'$horarioLlamada',
 								'$instaladores'
 							  )";
 		mysqli_query($conexion, $consultaProductos) or die ("Problemas -->".mysqli_error($conexion));
