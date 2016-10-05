@@ -551,7 +551,7 @@
 																														if (!empty($sistemaOperativo) && !empty($office) && empty($corel) && empty($adobe) && empty($gSketshup) && !empty($gVray) && !empty($archi) && !empty($tipoAutoCad)) {
 																															$instaladores = $sistemaOperativo .'-'. $tipoArqui .". Con " .$office.". "." Prog. de Arqui: ".$gVray." - ".$archi." - ".$tipoAutoCad.".";
 																														} else {
-																															# code...
+																															$instaladores ='';
 																														}
 																														
 																													}
@@ -611,12 +611,22 @@
 		
 	}
 	
+	$fallaCliente = $_REQUEST['fallaCliente'];
+	if (!empty($fallaCliente)) {
+		if (strlen($fallaCliente)>160) {
+			$errors [] = "El campo Falla de Cliente es mayor que 160 Caracteres.";
+		} 
+	} else{
+		$errors [] = "El campo esta vacio.";
+	}
+	
+	
 	
 	$consultaProductos = "INSERT INTO productos (articulo, fallaCliente, estadoEquipo, serial,idCliente , fechaIngreso, accesorios, codigo, horarioLlamada, instaladores ) 
 						  VALUES
 						  (
 						  	'$articuloNuevo',
-							'$_REQUEST[fallaCliente]',
+							'$fallaCliente',
 							'$_REQUEST[estadoEquipo]',
 							'$serial',
 							'$_REQUEST[seleccionCliente]',
@@ -627,6 +637,39 @@
 							'$instaladores'
 						  )";
 	mysqli_query($conexion, $consultaProductos) or die ("Problemas -->".mysqli_error($conexion));
-	echo "Su alta se ha realizado Correctamente. Articulo Nuevo dada de Alta";
+	$msj [] = "El Registro de Orden de Servicio se ha realizado Correctamente.";
 	mysqli_close($conexion);
- ?>
+ 
+
+	if (isset($msj)) {
+	?>	
+		<div class="alert alert-success" role="alert">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>¡Bien hecho!</strong>
+					<?php
+						foreach ($msj as $msjs) {
+							echo $msjs;
+						}
+					?>
+			</div>
+	<?php 
+	} 
+	 
+	if (isset($errors)) {
+		?>
+			<div class="alert alert-danger" role="alert">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Error!</strong> 
+				<?php
+					foreach ($errors as $error) {
+						echo $error;
+					}
+				?>
+			</div>
+			<?php
+			}
+	
+	 ?>
+	
+
+ 

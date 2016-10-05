@@ -7,6 +7,7 @@ $(document).ready(function() {
                  data: $("#ordenServicio-alta").serialize(), // serializes the form's elements.
                  success: function(data)
                  {
+                    $('#msjSucces').html(data);
                     $("#ordenServicio-alta")[0].reset();
                  }
                });

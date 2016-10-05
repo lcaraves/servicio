@@ -111,6 +111,7 @@
     </br>
     <form action="php/registrarOrden.php" method="post" id="ordenServicio-alta">
       <div class="form-horizontal">
+        <div id="msjSucces"></div>
         <div class="form-group">
           <label class="control-label col-xs-3" for="exampleInputEmail1">Titular del Equipo</label>
           <div class="col-xs-5">
@@ -134,7 +135,7 @@
         </div><!-- end div form-group -->    
       </div>    
       </br>
-
+     <div id="msjSucces"></div>
      <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
