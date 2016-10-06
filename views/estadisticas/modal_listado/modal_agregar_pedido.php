@@ -42,9 +42,9 @@
                 <div class="col-sm-6">
                   <select name="estado_pedido" id="" class="form-control">
                       <option value=""></option>
-                      <option value="Se vendio">Se vendio</option>
                       <option value="En Servicio Tecnico">En Servicio Tecnico</option>
-                      <option value="">Se Devolvio</option>
+                      <option value="Se vendio">Se vendio</option>
+                      <option value="Se Devolvio">Se Devolvio</option>
                     </select>  
                 </div>
               </div>

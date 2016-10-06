@@ -6,7 +6,7 @@
 		if (strlen($_REQUEST['articulo_pedido']) > 40) {
 		$errors[] = "</br>El Articulo debe ser menor que 40.";
 		}else {
-			$articulo_pedido = $_REQUEST['articulo_pedido'];
+			$articulo_pedido = trim($_REQUEST['articulo_pedido']);
 		}
 	} else {
 		$errors[] = "</br>El Articulo de Pedido, esta vacio.";
@@ -24,16 +24,16 @@
 		$estado_pedido = '';
 	}
 
-	if (isset($_REQUEST['fecha_salida_pedido'])) {
-		$fecha_salida_pedido = $_REQUEST['fecha_salida_pedido'];
+	if (!empty(($_REQUEST['fecha_salida_pedido']))) {
+		$fecha_salida_pedido = $fecha_salida_pedido = date('Y-m-d',strtotime($_REQUEST['fecha_salida_pedido']));
 	} else {
-		$fecha_salida_pedido = '';
+		$fecha_salida_pedido = '0000-00-00';
 	}
 
 	if (!empty($_REQUEST['nropresupuesto_pedido'])) {
 		if (strlen($_REQUEST['nropresupuesto_pedido']) > 7) {
 		$errors[] = "</br>El nro de presupuesto debe ser menor que 7.";
-		}else {$nropresupuesto_pedido = $_REQUEST['nropresupuesto_pedido'];}
+		}else {$nropresupuesto_pedido = trim($_REQUEST['nropresupuesto_pedido']);}
 	} else {
 		$nropresupuesto_pedido = 'S-P';
 	}

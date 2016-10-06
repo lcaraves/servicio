@@ -3,9 +3,15 @@
 	//Datos a modificar
 	$idPedidoServicio = $_REQUEST['idPedidoServicio'];
 	$articulo_pedido = $_REQUEST['articulo_pedido'];
-	$nropresupuesto_pedido = $_REQUEST['nropresupuesto_pedido'];
+	$nropresupuesto_pedido = trim($_REQUEST['nropresupuesto_pedido']);
 	$estado_pedido = $_REQUEST['estado_pedido'];
-	$fecha_salida_pedido =$_REQUEST['fecha_salida_pedido'];
+	
+
+	if (empty($_REQUEST['fecha_salida_pedido'])) {
+		$fecha_salida_pedido = '0000-00-00';
+	}else{
+		$fecha_salida_pedido = date('Y-m-d',strtotime($_REQUEST['fecha_salida_pedido']));
+	}
 
 	if (strlen($nropresupuesto_pedido) > 7) {
 		$errors[] = "</br> El nro de presupuesto debe ser menor que 7. </br>";
@@ -40,6 +46,7 @@
 				<strong>¡Bien hecho!</strong>
 					<?php
 						echo "La modificacion se realiza con total normalidad."; 
+						echo $fecha_salida_pedido;
 					?>
 			</div>
 <?php

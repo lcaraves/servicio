@@ -32,15 +32,15 @@
                <div class="row form-group">
                 <label for="" class="control-label col-sm-3">Fecha Salida</label>
                 <div class="col-sm-6">
-                  <input type="date" class="form-control datepicker" id="fecha_salida_pedido_update" name="fecha_salida_pedido">
+                  <input type="text" class="form-control datepicker" id="fecha_salida_pedido_update" name="fecha_salida_pedido">
                 </div>
               </div>
               <div class="row form-group">
                 <label for="" class="control-label col-sm-3">Estado</label>
                 <div class="col-sm-6">
                   <select name="estado_pedido" class="form-control">
-                      <option value="Se vendio">Se vendio</option>
                       <option value="En Servicio Tecnico">En Servicio Tecnico</option>
+                      <option value="Se vendio">Se Vendio</option>
                       <option value="Se Devolvio">Se Devolvio</option>
                     </select>  
                 </div>

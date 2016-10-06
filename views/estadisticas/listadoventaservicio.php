@@ -117,11 +117,20 @@
           <tbody class="buscar">
             <tr id="<?php echo $row['idPedidoServicio'] ?>">
               <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
-              <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['articulo_pedido'] ?> </td>
-              <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['fecha_pedido'] ?> </td>
+              <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['articulo_pedido']); ?> </td>
+              <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo date('d-m-Y H:i:s',strtotime($row['fecha_pedido'])) ?> </td>
               <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
-              <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['nropresupuesto_pedido'] ?> </td>
-              <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>"><?php echo $row['fecha_salida_pedido'] ?></td>
+              <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['nropresupuesto_pedido']) ?> </td>
+              <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>">
+                <?php 
+                if ('0000-00-00' == $row['fecha_salida_pedido']) {
+                  echo "Sin Fecha de Salida";
+                }else{
+                  echo date('d-m-Y',strtotime($row['fecha_salida_pedido']));
+                }
+                ?>
+                  
+              </td>
               <td>
                 <div class="btn-group">
                   <ul class="nav navbar-nav navbar-right">
