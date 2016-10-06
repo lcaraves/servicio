@@ -46,7 +46,6 @@
 				<strong>¡Bien hecho!</strong>
 					<?php
 						echo "La modificacion se realiza con total normalidad."; 
-						echo $fecha_salida_pedido;
 					?>
 			</div>
 <?php

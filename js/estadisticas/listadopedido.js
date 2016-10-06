@@ -20,6 +20,7 @@ $(document).ready(function() {
                success: function(data)
                {                  
                   $("#msj_alta_pedido").html(data);
+
                }
    		})
 	 	e.preventDefault();	   	
