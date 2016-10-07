@@ -43,31 +43,49 @@
 
 	//Inicialización Direccion.
 	if (isset($_REQUEST['direccion'])) {
-		$direccion = $_REQUEST['direccion'];
+		if (!empty($_REQUEST['direccion'])) {
+			if (strlen($_REQUEST['direccion'])>35) {
+				$errors [] = "</br>El campo <strong>direccón</strong> es mayor de 35 Caracteres.";
+			} else {
+				$direccion = $_REQUEST['direccion'];
+			}
 		} else {
 		$direccion = '';
+		}
 	}
-	//Inicialización Localidad.
-	if (isset($_REQUEST['localidad'])) {
-		$localidad = $_REQUEST['localidad'];
-	} else {
-		$localidad = '';
-	}
+
 	//Inicialización Email.
 	if (isset($_REQUEST['email'])) {
-		$email = $_REQUEST['email'];
-	} else {
-		$email = '';
+		if (!empty($_REQUEST['email'])) {
+			if (strlen($_REQUEST['email'])>30) {
+				$errors [] = "</br>El campo <strong>Email</strong> es mayor de 30 Caracteres.";
+			} else {
+				$email = $_REQUEST['email'];		
+			} 
+		} else {
+			$email = '';
+			}
 	}
+
+	//Inicialización Localidad.
+	if (isset($_REQUEST['localidad'])) {
+		if (!empty($_REQUEST['localidad'])) {
+			if (strlen($_REQUEST['localidad'])>20) {
+				$errors [] = "</br>El campo <strong>Localidad</strong> es mayor de 20 Caracteres.";
+			} else{
+				$localidad = $_REQUEST['localidad'];		
+			}
+		}  else {
+			$localidad = '';
+		}
+	}
+	
 	//Inicialización Provincia.
 	if (isset($_REQUEST['provincia'])) {
 		$provincia = $_REQUEST['provincia'];
 	} else {
 		$provincia = '';
 	}
-	
-
-	
 
 	//Control de Errores
 	if (isset($errors)) {

@@ -40,7 +40,7 @@
               <div class="row form-group">
                 <label for="" class="control-label col-sm-2">*Telefono</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" placeholder="Telefono" name="telefono" maxlength="10" placeholder="3624101010">
+                  <input type="text" class="form-control" name="telefono" maxlength="10" placeholder="3624101010" autocomplete="off">
                 </div>
               </div>
               <div class="row form-group">
