@@ -74,7 +74,7 @@ $(document).ready(function(e) {
 	           success: function(data)
 	           {
 	            $("#form-alta")[0].reset();
-	            location.reload();  
+	            $("#ajax_msj").html(data);
 	           }
 	         });
 	    e.preventDefault(); // avoid to execute the actual submit of the form.       

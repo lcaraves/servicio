@@ -341,6 +341,7 @@
                  success: function(data)
                  {
                     $("#form-alta")[0].reset();
+                    $("#msj_ajax").html(data);
                  }
                });
           e.preventDefault(); // avoid to execute the actual submit of the form.       

@@ -18,16 +18,17 @@
               <div class="row form-group">
                 <p class="col-sm-8"><small><strong>*</strong>Campos Obligatorios</small></p>
               </div>
+              <div id="ajax_msj"></div>
               <div class="row form-group">
                 <label for="" class="control-label col-sm-2">*Nombre</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" placeholder="Jose Juan" name="nombre" required>
+                  <input type="text" class="form-control" placeholder="Jose Juan" name="nombre">
                 </div>
               </div>
               <div class="row form-group">
                 <label for="" class="control-label col-sm-2">*Apellido</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" placeholder="Gomez" name="apellido" required>
+                  <input type="text" class="form-control" placeholder="Gomez" name="apellido">
                 </div>
               </div>
               <div class="row form-group">
@@ -39,7 +40,7 @@
               <div class="row form-group">
                 <label for="" class="control-label col-sm-2">*Telefono</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" placeholder="Telefono" name="telefono" maxlength="10" placeholder="44202020" required>
+                  <input type="text" class="form-control" placeholder="Telefono" name="telefono" maxlength="10" placeholder="44202020">
                 </div>
               </div>
               <div class="row form-group">
