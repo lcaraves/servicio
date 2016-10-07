@@ -166,21 +166,22 @@
                               <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                              <li class="dropdown-header">Presupuesto</li>
+                              <li class="dropdown-header">Trabajos</li>                    
                               <li id="<?php echo $row['idProducto'] ?>" class="agregarpresupuesto" data-toggle="modal" data-target="#altaPresupuesto">
                                   <a href="#">
                                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Agregar
                                   </a>
-                              </li>  
+                              </li>
+                              <li class="dropdown-header">Llamadas</li>  
                               <li class="agregarllamada" data-toggle="modal" data-target="#altallamada" id="<?php echo $row['idProducto'] ?>">
                                 <a href="#">
-                                  <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Llamadas
+                                  <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Agregar
                                 </a>
                               </li>  
                               <form method="POST" action="../../php/presupuesto/historialLlamadas.php" id="llamadas">
                                 <li data-toggle="modal" data-target="#llamadaHistorial">
 									               <input type="hidden" name="idProducto" value='<?php echo $row['idProducto'];?>'>
-									               <input type="submit"  value="HLLamada">	
+									               <input type="submit"  value="Historial LLamadas">	
 								                </li>  
                               </form>
                             </ul>
@@ -302,6 +303,7 @@
                  success: function(data)
                  {
                     $("#form-alta-presupuesto")[0].reset();
+                    $("#msj_ajax_trabajo").html(data);
                   }
                });
           e.preventDefault(); // avoid to execute the actual submit of the form.       

@@ -680,7 +680,7 @@
 	?>	
 		<div class="alert alert-success" role="alert">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong>¡Bien hecho!</strong>
+				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>¡Bien hecho!</strong>
 					<?php
 						foreach ($msj as $msjs) {
 							echo $msjs;

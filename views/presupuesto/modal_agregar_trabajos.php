@@ -1,6 +1,6 @@
 <!-- Ventana Modal alta de TRABAJOS-->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="altaPresupuesto">
-  <form method="POST" action="../../php/presupuesto/altaTrabajos.php" name="" class="form-horizontal" id="form-alta-presupuesto">
+<form method="POST" action="../../php/presupuesto/altaTrabajos.php" name="" class="form-horizontal" id="form-alta-presupuesto">
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="altaPresupuesto">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -14,10 +14,11 @@
               <p class="col-sm-8"><small><strong>*</strong> Campos Obligatorios</small></p>
             </div>
             <input type="hidden" name="idProducto" id="id_agregarPresupuesto">
+            <div id="msj_ajax_trabajo"></div>
             <div class="row form-group">
               <label for="" class="control-label col-sm-4">*Trabajo Realizado</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Instalación de Sistema Operativo" name="trabajoRealizado" required>
+                <input type="text" class="form-control" placeholder="Instalación de Sistema Operativo" name="trabajoRealizado">
               </div>
             </div>
             <div class="row form-group">
@@ -71,5 +72,5 @@
         </div>  
     </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
-  </form>
-</div><!-- /.modal -->
+  </div><!-- /.modal -->
+</form>
