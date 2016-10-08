@@ -1,10 +1,10 @@
   <?php 
-  require '../../php/conexion.php';
+  require_once '../../php/conexion.php';
   $consultaLlamadas = "SELECT * FROM llamadas l, productos p WHERE p.idProducto = l.idProducto AND l.idProducto = '$_REQUEST[idProducto]' ORDER BY l.idLlamada DESC";
   $resultLlamadas = mysqli_query($conexion, $consultaLlamadas) or die("PROBLEMA CON LA CONSULTA DE LLAMADAS.");
   $total = mysqli_num_rows($resultLlamadas);
 
-$msj= "<div class='table-responsive'>
+$msj = "<div class='table-responsive'>
   <table class='table table-bordered table-hover'>
     <thead>
       <tr>
@@ -25,13 +25,13 @@ $msj= "<div class='table-responsive'>
          
          } else {
            while ($row = mysqli_fetch_array($resultLlamadas)){
-        $msj = $msj." 
-        <td>". $row['idLlamada'] ."</td>
-        <td>". $row['fechaHoraLlamada']."</td>
-        <td>". $row['observaciones']."</td>
-        <td>". $row['notificado']."</td>
-      </tr>";
-	  }
+            $msj = $msj." 
+              <td>". $row['idLlamada'] ."</td>
+              <td>". $row['fechaHoraLlamada']."</td>
+              <td>". $row['observaciones']."</td>
+              <td>". $row['notificado']."</td>
+            </tr>";
+	       }
 	  }
     $msj = $msj."</tbody>  
   </table>
