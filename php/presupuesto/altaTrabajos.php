@@ -27,7 +27,7 @@ if (!empty($_REQUEST['cambioProducto']) OR !empty($_REQUEST['otrosProductos'])) 
 	}
 //Campo Observaciones
 if (isset($_REQUEST['observaciones'])) {
-	if (strlen($_REQUEST['observaciones'])>45) {
+	if (strlen($_REQUEST['observaciones'])>75) {
 		$errors [] = "</br> El campo <strong>observaciones</strong>, es mayor que 45 caracteres.";
 		}else{
 			$observaciones = $_REQUEST ['observaciones'];
