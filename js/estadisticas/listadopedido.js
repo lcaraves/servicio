@@ -1,10 +1,28 @@
 $(document).ready(function() {
-	//para Realizar la Busqueda.
-   $('#filtrar').keyup(function () {
+	//Filtro para --> productos que estan en el servicio tecnico
+   $('#filtrar1').keyup(function () {
 
      var rex = new RegExp($(this).val(), 'i');
-     $('.buscar tr').hide();
-     $('.buscar tr').filter(function () {
+     $('.buscar1 tr').hide();
+     $('.buscar1 tr').filter(function () {
+         return rex.test($(this).text());
+     }).show();
+   });
+   //Filtro para --> productos que se Devolvieron
+   $('#filtrar2').keyup(function () {
+
+     var rex = new RegExp($(this).val(), 'i');
+     $('.buscar2 tr').hide();
+     $('.buscar2 tr').filter(function () {
+         return rex.test($(this).text());
+     }).show();
+   });
+   //Filtro para --> Productos Vendidos
+   $('#filtrar3').keyup(function () {
+
+     var rex = new RegExp($(this).val(), 'i');
+     $('.buscar3 tr').hide();
+     $('.buscar3 tr').filter(function () {
          return rex.test($(this).text());
      }).show();
    });

@@ -86,10 +86,12 @@
               <li class="dropdown-header">Presupuesto</li>
               <li><a href="views/ordenServicio/listaordenes.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ver Ordenes</a></li>
               <li><a href="views/presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
+              <li><a href="views/estadisticas/listadoventaservicio.php">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="views/estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
               <li><a href="php/pdf/imprimir2.php">Imprimir Prueba</a></li>
-              <li><a href="views/estadisticas/listadoventaservicio.php">Pedido Ventas</a></li>
+              
               <li role="separator" class="divider"></li>
               <li>
                 <a href="php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
@@ -501,7 +503,7 @@
      </div>
     </form> 
   </div><!-- End Container Fluid -->
-
+  </br>
   <footer class="bd-footer text-muted">
     <div class="avbar navbar-default navbar-static-top">
       <div class="container">
@@ -514,10 +516,7 @@
           </center>    
       </div>
     </div>
-  </footer>
-  <div>
-
-   
+  </footer>   
 </body>
 </html>
 
@@ -600,9 +599,11 @@
         </div>
         <br>            
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">Close</button>
-          <button type="submit" class="btn btn-primary" aria-label="Left Align">
-            <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+          <button type="submit" class="btn btn-success" aria-label="Left Align">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
           </button>
         </div>
       </div><!-- /.modal-content -->

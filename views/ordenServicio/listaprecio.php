@@ -61,6 +61,8 @@
                   <li class="dropdown-header">Presupuesto</li>
                   <li><a href="listaordenes.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ver Ordenes</a></li>
                   <li><a href="../presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
+                  <li><a href="../estadisticas/listadoventaservicio.php">
+                  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
                   <li class="dropdown-header">Estadisticas</li>
                   <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
                   <li role="separator" class="divider"></li>

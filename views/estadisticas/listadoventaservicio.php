@@ -33,11 +33,6 @@
       if(!isset($_SESSION["session_UsuarioNombre"])){
       header("Location: php/inicioSesion/logeo.php");
     }
- 
-  require_once '../../php/conexion.php';
-  $consultaPedido = "SELECT * FROM pedidoservicio ORDER BY idPedidoServicio DESC LIMIT 50";
-  $resultadosPed = mysqli_query($conexion, $consultaPedido) or die("PROBLEMA CON LA CONSULTA DE CLIENTES.");
-  
  ?>  
 	<div class="container theme-showcase" role="main" id="actualizar-clientes">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -71,6 +66,8 @@
               <li class="dropdown-header">Presupuesto</li>
               <li><a href="../ordenServicio/listaordenes.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ver Ordenes</a></li>
               <li><a href="../presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
+              <li><a href="listadoventaservicio.php">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
               <li role="separator" class="divider"></li>
@@ -86,77 +83,253 @@
     <br>
     <br>
     <br>
-     <div class="form-inline">
-       <div class="form-group col-xs-11"> 
-         <div class="input-group col-xs-5">
-          <span class="input-group-addon">Buscar</span>
-          <input id="filtrar" type="text" class="form-control" placeholder="Ingresa el articulo que desea Buscar...">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#serviciotecnico" aria-controls="home" role="tab" data-toggle="tab">Servicio Técnico</a></li>
+      <li role="presentation"><a href="#devolvio" aria-controls="profile" role="tab" data-toggle="tab">Devuelto</a></li>
+      <li role="presentation"><a href="#vendio" aria-controls="profile" role="tab" data-toggle="tab">Vendio</a></li>
+    </ul>
+    <!-- Contenido de los Tab -->
+    <div class="tab-content">
+      <!-- Contenido de los Tab #servicio Tecnico -->
+      <?php 
+        require_once '../../php/conexion.php';
+        $consultaPedST = "SELECT * FROM pedidoservicio p WHERE p.estado_pedido = 'En Servicio Tecnico' ORDER BY p.idPedidoServicio DESC LIMIT 50";
+        $resultPedST = mysqli_query($conexion, $consultaPedST) or die("PROBLEMA CON LA CONSULTA DE Pedido de Productos que estan en el Servicio Tecnico.");
+       ?>
+      <div role="tabpanel" class="tab-pane active" id="serviciotecnico">
+        <br>
+        <div class="form-inline">
+          <div class="form-group col-xs-11"> 
+             <div class="input-group col-xs-5">
+              <span class="input-group-addon">Buscar</span>
+              <input id="filtrar1" type="text" class="form-control" placeholder="Ingresa el articulo que desea Buscar...">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaPedido">
+                <span class="glyphicon glyphicon-plus"></span>  Pedido
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Articulo</th>
+                <th>Fecha Ingreso</th>
+                <th>Estado</th>
+                <th>Nº Preseupuesto</th>
+                <th>Fecha Salida</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+              <?php while ($row = mysqli_fetch_array($resultPedST)){ ?>
+              <tbody class="buscar1">
+                <tr id="<?php echo $row['idPedidoServicio'] ?>">
+                  <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
+                  <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['articulo_pedido']); ?> </td>
+                  <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo date('d-m-Y H:i:s',strtotime($row['fecha_pedido'])) ?> </td>
+                  <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
+                  <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['nropresupuesto_pedido']) ?> </td>
+                  <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>">
+                    <?php 
+                    if ('0000-00-00' == $row['fecha_salida_pedido']) {
+                      echo "Sin Fecha de Salida";
+                    }else{
+                      echo date('d-m-Y',strtotime($row['fecha_salida_pedido']));
+                    }
+                    ?>
+                      
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li data-toggle="modal" data-target="#modificarPedido">
+                                <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
+                                </a>
+                            </li>  
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                   </td>
+                </tr>
+              </tbody>  
+              <?php 
+              } 
+              ?>
+          </table>
         </div>
       </div>
-      <div class="form-group">
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaPedido">
-            <span class="glyphicon glyphicon-plus"></span>  Pedido
-        </button>
+      <div role="tabpanel" class="tab-pane" id="devolvio">
+        <!-- Contenido de los Tab #devolvio producto a ventas -->
+        <?php 
+          $consultaPedDev = "SELECT * FROM pedidoservicio p WHERE p.estado_pedido = 'Se Devolvio' ORDER BY p.idPedidoServicio DESC LIMIT 50";
+          $resultPedDev = mysqli_query($conexion, $consultaPedDev) or die("PROBLEMA CON LA CONSULTA DE Pedido Devueltos al Area de Ventas.");
+         ?>
+        <br>
+        <div class="form-inline">
+          <div class="form-group col-xs-11"> 
+             <div class="input-group col-xs-5">
+              <span class="input-group-addon">Buscar</span>
+              <input id="filtrar2" type="text" class="form-control" placeholder="Ingresa el articulo que desea Buscar...">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaPedido">
+                <span class="glyphicon glyphicon-plus"></span>  Pedido
+            </button>
+          </div>
+        </div> 
+        <br>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Articulo</th>
+                <th>Fecha Ingreso</th>
+                <th>Estado</th>
+                <th>Nº Preseupuesto</th>
+                <th>Fecha Salida</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+              <?php while ($row = mysqli_fetch_array($resultPedDev)){ ?>
+              <tbody class="buscar2">
+                <tr id="<?php echo $row['idPedidoServicio'] ?>">
+                  <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
+                  <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['articulo_pedido']); ?> </td>
+                  <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo date('d-m-Y H:i:s',strtotime($row['fecha_pedido'])) ?> </td>
+                  <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
+                  <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['nropresupuesto_pedido']) ?> </td>
+                  <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>">
+                    <?php 
+                    if ('0000-00-00' == $row['fecha_salida_pedido']) {
+                      echo "Sin Fecha de Salida";
+                    }else{
+                      echo date('d-m-Y',strtotime($row['fecha_salida_pedido']));
+                    }
+                    ?>
+                      
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li data-toggle="modal" data-target="#modificarPedido">
+                                <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
+                                </a>
+                            </li>  
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                   </td>
+                </tr>
+              </tbody>  
+              <?php 
+              } 
+              ?>
+          </table>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="vendio">
+        <!-- Contenido de los Tab #vendio producto al cliente -->
+        <?php 
+          $consultaPedVen = "SELECT * FROM pedidoservicio p WHERE p.estado_pedido = 'Se Vendio' ORDER BY p.idPedidoServicio DESC LIMIT 50";
+          $resultPedVen = mysqli_query($conexion, $consultaPedVen) or die("PROBLEMA CON LA CONSULTA DE Pedido de Productos Vendidos .");
+         ?>
+        <br>
+        <div class="form-inline">
+          <div class="form-group col-xs-10"> 
+             <div class="input-group col-xs-5">
+              <span class="input-group-addon">Buscar</span>
+              <input id="filtrar3" type="text" class="form-control" placeholder="Ingresa el articulo que desea Buscar...">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaPedido">
+                <span class="glyphicon glyphicon-plus"></span>  Pedido
+            </button>
+          </div>
+        </div> 
+        <br>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Articulo</th>
+                <th>Fecha Ingreso</th>
+                <th>Estado</th>
+                <th>Nº Preseupuesto</th>
+                <th>Fecha Salida</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+              <?php while ($row = mysqli_fetch_array($resultPedVen)){ ?>
+              <tbody class="buscar3">
+                <tr id="<?php echo $row['idPedidoServicio'] ?>">
+                  <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
+                  <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['articulo_pedido']); ?> </td>
+                  <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo date('d-m-Y H:i:s',strtotime($row['fecha_pedido'])) ?> </td>
+                  <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
+                  <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['nropresupuesto_pedido']) ?> </td>
+                  <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>">
+                    <?php 
+                    if ('0000-00-00' == $row['fecha_salida_pedido']) {
+                      echo "Sin Fecha de Salida";
+                    }else{
+                      echo date('d-m-Y',strtotime($row['fecha_salida_pedido']));
+                    }
+                    ?>
+                      
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li data-toggle="modal" data-target="#modificarPedido">
+                                <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
+                                </a>
+                            </li>  
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                   </td>
+                </tr>
+              </tbody>  
+              <?php 
+              } 
+              mysqli_close($conexion);
+              ?>
+          </table>
+        </div>
       </div>
     </div>
-    <br>
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Articulo</th>
-            <th>Fecha Ingreso</th>
-            <th>Estado</th>
-            <th>Nº Preseupuesto</th>
-            <th>Fecha Salida</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-          <?php while ($row = mysqli_fetch_array($resultadosPed)){ ?>
-          <tbody class="buscar">
-            <tr id="<?php echo $row['idPedidoServicio'] ?>">
-              <td id="id_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['idPedidoServicio'] ?> </td>
-              <td id="articulo_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['articulo_pedido']); ?> </td>
-              <td id="fecha_<?php echo $row['idPedidoServicio'] ?>"> <?php echo date('d-m-Y H:i:s',strtotime($row['fecha_pedido'])) ?> </td>
-              <td id="estado_<?php echo $row['idPedidoServicio'] ?>"> <?php echo $row['estado_pedido'] ?> </td>
-              <td id="nropresupuesto_<?php echo $row['idPedidoServicio'] ?>"> <?php echo trim($row['nropresupuesto_pedido']) ?> </td>
-              <td id="fecha_salida_<?php echo $row['idPedidoServicio'] ?>">
-                <?php 
-                if ('0000-00-00' == $row['fecha_salida_pedido']) {
-                  echo "Sin Fecha de Salida";
-                }else{
-                  echo date('d-m-Y',strtotime($row['fecha_salida_pedido']));
-                }
-                ?>
-                  
-              </td>
-              <td>
-                <div class="btn-group">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li data-toggle="modal" data-target="#modificarPedido">
-                            <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
-                              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
-                            </a>
-                        </li>  
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-               </td>
-            </tr>
-          </tbody>  
-          <?php 
-          } 
-          mysqli_close($conexion);
-          ?>
-      </table>
-    </div>
+
+    
     <footer class="bd-footer text-muted">
       <div class="avbar navbar-default navbar-static-top">
         <div class="container">

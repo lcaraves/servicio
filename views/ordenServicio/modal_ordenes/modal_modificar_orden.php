@@ -1,12 +1,13 @@
-<!-- Ventana Modal Modificar Cliente-->
-<form method="POST" action="../../php/clientes/modificarcliente.php" name="formulario" class="form-horizontal" id="form-modificacion">
-  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="modalModificar">  
+<!-- Ventana Modal Modificar Orden de Servicio-->
+<form method="POST" action="../../php/clientes/" name="formulario" class="form-horizontal" id="form-modificacion">
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="modalModificarOrden">  
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="gridSystemModalLabel"><strong>Modificar Cliente</strong></h4>
         </div>
+        <p>FALTA TERMINAR</p>
         <div class="modal-body">
           <div class="form-horizontal">
               <div class="row form-group">
@@ -14,46 +15,40 @@
               </div>
               <input type="hidden" name="idCliente" id="id_update">
               <div class="row form-group">
-                <label for="" class="control-label col-sm-2">*Nombre</label>
+                <label for="" class="control-label col-sm-3">*Articulo</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="nombre_update" name="nombre" required>
+                  <input type="text" class="form-control" id="nombre_update" name="articulo">
                 </div>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-2">*Apellido</label>
+                <label for="" class="control-label col-sm-3">Estado del Equipo</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control"  id="apellido_update" name="apellido" required>
+                  <input type="text" class="form-control"  id="apellido_update" name="estadoEquipo">
                 </div>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-2">Direccion</label>
+                <label for="" class="control-label col-sm-3">Codigo</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="direccion_update" name="direccion">
+                  <input type="text" class="form-control" id="direccion_update" name="codigo">
                 </div>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-2">*Telefono</label>
+                <label for="" class="control-label col-sm-3">Serial</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control"  id="telefono_update" name="telefono" maxlength="10" required>
+                  <input type="text" class="form-control"  id="telefono_update" name="serial">
                 </div>
               </div>
               <div class="row form-group">
-                <label for="" class="control-label col-sm-2">Email</label>
+                <label for="" class="control-label col-sm-3">Accesorios</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="email_update" name="email">
+                  <input type="text" class="form-control" id="email_update" name="accesorios">
                 </div>
               </div>
                <div class="row form-group">
-                <label for="" class="control-label col-sm-2">Localidad</label>
+                <label for="" class="control-label col-sm-3">Falla del Cliente</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="localidad_update" name="localidad">
+                  <input type="text" class="form-control" id="localidad_update" name="fallaCliente">
                 </div>
-              </div>
-              <div class="row form-group">
-                  <label for="" class="control-label col-sm-2">Provincia</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="provincia_update" name="provincia">
-                  </div>
               </div>
           </div>
         </div>            

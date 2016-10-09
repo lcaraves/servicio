@@ -49,8 +49,10 @@
         </div>
         <br>            
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">Close</button>
-          <button type="submit" class="btn btn-primary" aria-label="Left Align">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+          <button type="submit" class="btn btn-success" aria-label="Left Align">
             <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
           </button>
         </div>

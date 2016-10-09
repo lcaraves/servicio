@@ -11,8 +11,8 @@
       <div class="modal-body">
 		    <div id="mostrarTabla"></div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">
-            <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+         <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </button>
         </div>
       </div>  

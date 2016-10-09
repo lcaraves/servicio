@@ -66,6 +66,8 @@
               <li class="dropdown-header">Presupuesto</li>
               <li><a href="../ordenServicio/listaordenes.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ver Ordenes</a></li>
               <li><a href="../presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
+              <li><a href="../estadisticas/listadoventaservicio.php">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
               <li role="separator" class="divider"></li>
@@ -123,10 +125,10 @@
                 <div class="form-inline">
 
                   <button type="button" class="btn btn-default eliminarCliente" id='<?php echo $row['idCliente']?>' data-toggle="modal" data-target="#modalEliminarCliente" title="Eliminar Cliente">
-                    <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                   </button>              
                   <button type="button" class="btn btn-primary modificarCliente" id="<?php echo $row['idCliente'] ?>" data-toggle="modal" data-target="#modalModificar" title="Modificar Cliente">  
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                   </button>
                 </div>
               </td>   

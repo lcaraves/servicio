@@ -27,8 +27,6 @@
       header("Location: php/inicioSesion/logeo.php");
     }
   ?>
-  
-  
 	<div class="container fluid theme-showcase" role="main">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -61,6 +59,8 @@
                   <li class="dropdown-header">Presupuesto</li>
                   <li><a href="listaordenes.php"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ver Ordenes</a></li>
                   <li><a href="../presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
+                  <li><a href="../estadisticas/listadoventaservicio.php">
+                  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
                   <li class="dropdown-header">Estadisticas</li>
                   <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
                   <li role="separator" class="divider"></li>
@@ -72,12 +72,18 @@
             </div><!--/.nav-collapse -->
       </div>
     </nav><!-- end nav menu -->
-    <br><br><br>
-   <div class="well well-lg">
-       <h4>
-         Lista de Ordenes
-       </h4>
-    </div>  
+    <br>
+    <br>
+    <br>
+     <div class="form-inline">
+       <div class="form-group col-xs-11"> 
+         <div class="input-group col-xs-5">
+          <span class="input-group-addon">Buscar</span>
+          <input id="filtrar" type="text" class="form-control" placeholder="Ingresa lo que deseas Buscar...">
+        </div>
+      </div>
+    </div>
+    <br><br>  
     <?php 
       require_once '../../php/conexion.php';
       $consultaClientes = "SELECT * FROM productos p, clientes c WHERE p.idCliente = c.idCliente ORDER BY p.idProducto DESC LIMIT 25";
@@ -86,20 +92,23 @@
      ?>  
     <div class="table-responsive">
       <table class="table table-hover">
-        <tr>
-            <th>#</th>
-            <th>Artículo</th>
-            <th>Cliente</th>
-            <th>Fecha Ingreso</th>
-            <th>Estado del Equipo</th>
-            <th>Codigo</th>
-            <th>Serial</th>
-            <th>Accesorios</th>
-            <th>Horario Llamada</th>
-            <th>Falla del Cliente</th>
-        </tr>
-          <?php while ($row = mysqli_fetch_array($resultadosPro)){ ?>
-         <tr>
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Artículo</th>
+              <th>Cliente</th>
+              <th>Fecha Ingreso</th>
+              <th>Estado del Equipo</th>
+              <th>Codigo</th>
+              <th>Serial</th>
+              <th>Accesorios</th>
+              <th>Horario Llamada</th>
+              <th>Falla del Cliente</th>
+          </tr>  
+        </thead>
+        <?php while ($row = mysqli_fetch_array($resultadosPro)){ ?>
+        <tbody class="buscar">
+          <tr>
             <td> <?php echo $row['idProducto'] ?> </td>
             <td> <?php echo $row['articulo'] ?> </td>
             <td> <?php echo $row['nombre']." "; echo $row['apellido']?> </td>
@@ -110,25 +119,49 @@
             <td> <?php echo $row['accesorios'] ?> </td>
             <td> <?php echo $row['horarioLlamada'] ?> </td>
             <td> <?php echo $row['fallaCliente'] ?> </td>
+            <td>
+              <div class="form-inline">            
+                <button type="button" class="btn btn-primary modificarOrden" id="<?php echo $row['idProducto'] ?>" data-toggle="modal" data-target="#modalModificarOrden" title="Modificar Orden">  
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </button>
+              </div>
+            </td>   
           </tr>
+        </tbody> 
           <?php 
           } 
           mysqli_close($conexion);
           ?>
       </table>
-    </div>
-    <footer class="bd-footer text-muted">
-      <div class="avbar navbar-default navbar-static-top">
-        <div class="container">
-            <center>
-              <img src="../../img/ArwanLogoGris.jpg" alt="" width="32" class="img-circle">
-              <p class="text-muted credit">
-                <strong>E-mail: ventas@arwancomputacion.com.ar <br>Av. San Martin 83 | C.P. H3500CIA | Resistencia, Chaco | Tel.: (0362) 4411605 <br>
-                <a href="http://www.arwancomputacion.com.ar">www.arwancomputacion.com.ar</a></strong>
-              </p>
-            </center>    
-        </div>
+  </div>
+  </br>
+  <footer class="bd-footer text-muted">
+    <div class="avbar navbar-default navbar-static-top">
+      <div class="container">
+          <center>
+            <img src="../../img/ArwanLogoGris.jpg" alt="" width="32" class="img-circle">
+            <p class="text-muted credit">
+              <strong>E-mail: ventas@arwancomputacion.com.ar <br>Av. San Martin 83 | C.P. H3500CIA | Resistencia, Chaco | Tel.: (0362) 4411605 <br>
+              <a href="http://www.arwancomputacion.com.ar">www.arwancomputacion.com.ar</a></strong>
+            </p>
+          </center>    
       </div>
-    </footer>		
+    </div>
+  </footer>		
 </body>
 </html>
+<?php include('modal_ordenes/modal_modificar_orden.php') ?>
+
+<script>
+  $(document).ready(function() {
+    //Para buscar 
+    $('#filtrar').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.buscar tr').hide();
+      $('.buscar tr').filter(function () {
+          return rex.test($(this).text());
+      }).show();
+    });
+  });
+</script>
