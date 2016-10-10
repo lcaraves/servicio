@@ -69,7 +69,7 @@
                   <li><a href="listadoventaservicio.php">
                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
                   <li class="dropdown-header">Estadisticas</li>
-                  <li><a href="notebookEstadisticas.php">Ingreso Notebook</a></li>
+                  <li><a href="notebookEstadisticas.php">Artículo</a></li>
                   <li role="separator" class="divider"></li>
                   <li>
                     <a href="../../php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
@@ -93,6 +93,7 @@
       <li role="presentation"><a href="#netbook" aria-controls="netbook" role="tab" data-toggle="tab">Netbook</a></li>
       <li role="presentation"><a href="#ensamblado" aria-controls="ensamblado" role="tab" data-toggle="tab">Ensamblado</a></li>
     </ul>
+
     <div class="tab-content"> 
       <div role="tabpanel" class="tab-pane fade in active" id="notebook">
         <div id="piechart" style="width: 900px; height: 500px;"></div>
@@ -100,7 +101,7 @@
       <div role="tabpanel" class="tab-pane fade active"  id="netbook">
         <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
       </div>
-      <div role="tabpanel" class="tab-pane fade" id="ensamblado">
+      <div role="tabpanel" class="tab-pane fade active" id="ensamblado">
         <div class="form-inline">
           <div class="form-group col-md-2 col-md-offset-10">
             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaEnsamblado">
@@ -108,7 +109,31 @@
             </button>
           </div>
         </div>
-    </div>  
+        <form action="../../php/estadisticas/busquedaDesdeHastaEnsamblado.php" method="POST" id="busqueda-desde-hasta-ensamblado">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="" class="control-label col-sm-3">Desde</label>
+              <input type="text" id="desdeCalendario" class="form-control col-xs-2" name="desde" placeholder="dd/mm/aaaa">  
+            </div>
+            <div class="form-group">
+              <label for="" class="control-label col-sm-3">Hasta</label>
+              <input type="text" id="hastaCalendario" class="form-control col-xs-2" name="hasta" placeholder="dd/mm/aaaa">  
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" aria-label="Left Align">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>  
+            </div>
+          </div>
+        </form>
+        <div>
+          <br>
+          <div class="ajax_busqueda_ensamblado" ></div>
+          <div id="columnchart_values" style="width: 900px; height: 500px;"></div>    
+        </div>
+      </div>
+     </div> 
+         
     <footer class="bd-footer text-muted">
       <div class="avbar navbar-default navbar-static-top">
         <div class="container">
@@ -124,6 +149,8 @@
     </footer>
 </body>
 </html>
+<?php include('modal_estadisticas/modal_agregar_ensamblado.php') ?>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
   <?php 
@@ -185,7 +212,47 @@
    }  
 </script>
 
-<?php include('modal_estadisticas/modal_agregar_ensamblado.php') ?>
+  <script type="text/javascript">
+    <?php 
+      $consultaEnsamblado = "SELECT *, SUM(e.cantidad_ensamblado) FROM ensamblado e GROUP BY e.articulo_ensamblado ORDER BY e.articulo_ensamblado DESC";
+      $resultEnsamblado = mysqli_query($conexion, $consultaEnsamblado) or die("PROBLEMA CON LA CONSULTA DE Ensamblado.");
+      
+    ?> 
+
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Maquina Ensamblada", "Cantidad", { role: "style" } ],
+        <?php 
+          while ($rowEnsamblado = mysqli_fetch_array($resultEnsamblado)) { 
+         ?>
+        ["<?php echo $rowEnsamblado['articulo_ensamblado'] ?>", <?php echo $rowEnsamblado['SUM(e.cantidad_ensamblado)'] ?>, "#519BB0"],
+        <?php }?>
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Cantidad de Máquinas Ensambladas",
+        width: 950,
+        height: 500,
+        bar: {groupWidth: "50%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+    }
+  </script>
+
+
+
 
 
 

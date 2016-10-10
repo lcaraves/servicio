@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="../../js/ordenservicio/ordenservicio.js"></script>
 </head>
 <body>
 <?php 
@@ -62,7 +63,7 @@
                   <li><a href="../estadisticas/listadoventaservicio.php">
                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
                   <li class="dropdown-header">Estadisticas</li>
-                  <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
+                  <li><a href="../estadisticas/notebookEstadisticas.php">Artículo</a></li>
                   <li role="separator" class="divider"></li>
                   <li>
                     <a href="../../php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
@@ -116,19 +117,19 @@
         <?php while ($row = mysqli_fetch_array($resultadosPro)){ ?>
         <tbody class="buscar">
           <tr>
-            <td> <?php echo $row['idProducto'] ?> </td>
+            <td id="id_<?php echo $row['idProducto'] ?>" > <?php echo $row['idProducto'] ?> </td>
             <td> <?php echo $row['articulo'] ?> </td>
             <td> <?php echo $row['nombre']." "; echo $row['apellido']?> </td>
             <td> <?php echo $row['fechaIngreso'] ?> </td>
-            <td> <?php echo $row['estadoEquipo'] ?> </td>
-            <td> <?php echo $row['codigo'] ?> </td>
-            <td> <?php echo $row['serial'] ?> </td>
-            <td> <?php echo $row['accesorios'] ?> </td>
+            <td id="estadoEquipo_<?php echo $row['idProducto'] ?>" > <?php echo $row['estadoEquipo'] ?> </td>
+            <td id="codigo_<?php echo $row['idProducto'] ?>" > <?php echo $row['codigo'] ?> </td>
+            <td id="serial_<?php echo $row['idProducto'] ?>" > <?php echo $row['serial'] ?> </td>
+            <td id="accesorios_<?php echo $row['idProducto'] ?>" > <?php echo $row['accesorios'] ?> </td>
             <td> <?php echo $row['horarioLlamada'] ?> </td>
-            <td> <?php echo $row['fallaCliente'] ?> </td>
+            <td id="fallaEquipo_<?php echo $row['idProducto'] ?>" > <?php echo $row['fallaCliente'] ?> </td>
             <td>
               <div class="form-inline">            
-                <button type="button" class="btn btn-primary modificarOrden" id="<?php echo $row['idProducto'] ?>" data-toggle="modal" data-target="#modalModificarOrden" title="Modificar Orden">  
+                <button type="button" class="btn btn-primary modifOrden" id="<?php echo $row['idProducto'] ?>" data-toggle="modal" data-target="#modalModificarOrden" title="Modificar Orden">  
                   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
               </div>
@@ -158,17 +159,3 @@
 </body>
 </html>
 <?php include('modal_ordenes/modal_modificar_orden.php') ?>
-
-<script>
-  $(document).ready(function() {
-    //Para buscar 
-    $('#filtrar').keyup(function () {
-
-      var rex = new RegExp($(this).val(), 'i');
-      $('.buscar tr').hide();
-      $('.buscar tr').filter(function () {
-          return rex.test($(this).text());
-      }).show();
-    });
-  });
-</script>

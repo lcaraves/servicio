@@ -89,7 +89,7 @@
               <li><a href="views/estadisticas/listadoventaservicio.php">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
               <li class="dropdown-header">Estadisticas</li>
-              <li><a href="views/estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
+              <li><a href="views/estadisticas/notebookEstadisticas.php">Artículos</a></li>
               <li><a href="php/pdf/imprimir2.php">Imprimir Prueba</a></li>
               
               <li role="separator" class="divider"></li>

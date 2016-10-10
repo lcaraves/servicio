@@ -69,7 +69,7 @@
               <li><a href="listadoventaservicio.php">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
               <li class="dropdown-header">Estadisticas</li>
-              <li><a href="../estadisticas/notebookEstadisticas.php">Ingreso Notebook</a></li>
+              <li><a href="../estadisticas/notebookEstadisticas.php">Artículo</a></li>
               <li role="separator" class="divider"></li>
               <li>
                 <a href="../../php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>

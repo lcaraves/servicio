@@ -47,11 +47,11 @@ $(document).ready(function() {
 	//Modificar Pedido
 	$('.modificarPedido').click(function () {
 	      
-	  var idPedidoServicio = $(this).attr('id');
-	  var articulo_pedido = $('#articulo_' + idPedidoServicio).text();
-	  var fecha_pedido = $('#fecha_' + idPedidoServicio).text();
-	  var nropresupuesto_pedido = $('#nropresupuesto_' + idPedidoServicio).text();
-	  var fecha_salida_pedido = $('#fecha_salida_pedido' + idPedidoServicio).text();
+	  var idPedidoServicio = $.trim($(this).attr('id'));
+	  var articulo_pedido = $.trim($('#articulo_' + idPedidoServicio).text());
+	  var fecha_pedido = $.trim($('#fecha_' + idPedidoServicio).text());
+	  var nropresupuesto_pedido = $.trim($('#nropresupuesto_' + idPedidoServicio).text());
+	  var fecha_salida_pedido = $.trim($('#fecha_salida_pedido' + idPedidoServicio).text());
 	  
 	  $('#idPedidoServicio_update').val(idPedidoServicio);
 	  $('#articulo_pedido_update').val(articulo_pedido);

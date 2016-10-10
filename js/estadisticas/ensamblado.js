@@ -22,6 +22,24 @@ $(document).ready(function() {
 	});
 
 	$( function() {
-    $( "#calendario" ).datepicker();
-  } );
+    	$( "#calendario" ).datepicker();
+    	$( "#desdeCalendario" ).datepicker();
+    	$( "#hastaCalendario" ).datepicker();
+  	});
+
+	$('#busqueda-desde-hasta-ensamblado').submit(function(e) {
+		var type = 'POST';
+		var parametros = $(this).serialize();
+		var url = '../../php/estadisticas/busquedaDesdeHastaEnsamblado.php'
+		$.ajax({
+			url: url,
+			type: type,
+			data: parametros,
+				success: function (data) {
+					$('.ajax_busqueda_ensamblado').html(data);
+				}
+		})
+		e.preventDefault();	
+	});
+
 });
