@@ -93,7 +93,7 @@
     <br><br>  
     <?php 
       require_once '../../php/conexion.php';
-      $consultaClientes = "SELECT * FROM productos p, clientes c WHERE p.idCliente = c.idCliente ORDER BY p.idProducto DESC LIMIT 25";
+      $consultaClientes = "SELECT * FROM productos p, clientes c WHERE p.idCliente = c.idCliente ORDER BY p.idProducto DESC LIMIT 400";
       $resultadosPro = mysqli_query($conexion, $consultaClientes) or die("PROBLEMA CON LA CONSULTA DE PRODUCTOS.");
       
      ?>  

@@ -16,69 +16,6 @@
 	} else {
 		if ($tipoArticulo =="Notebook") {
 
-			switch ($marcaNotebook) {
-				case 'Acer':
-					$nuevaVisita = 1;
-					break;
-				case 'Sony':
-					$nuevaVisita = 2;
-					break;
-				case 'Lenovo':
-					$nuevaVisita = 3;
-					break;
-				case 'Apple':
-					$nuevaVisita = 4;
-					break;
-				case 'Samsung':
-					$nuevaVisita = 5;
-					break;
-				case 'Positivo BGH':
-					$nuevaVisita = 6;
-					break;
-				case 'Toshiba':
-					$nuevaVisita = 7;
-					break;
-				case 'Compaq':
-					$nuevaVisita = 8;
-					break;
-				case 'PcBox':
-					$nuevaVisita = 9;
-					break;
-				case 'HP':
-					$nuevaVisita = 10;
-					break;
-				case 'Noblex':
-					$nuevaVisita = 11;
-					break;
-				case 'TCL':
-					$nuevaVisita = 12;
-					break;
-				case 'Asus':
-					$nuevaVisita = 13;
-					break;
-				case 'Msi':
-					$nuevaVisita = 14;
-					break;
-				case 'Bangho':
-					$nuevaVisita = 15;
-					break;
-				case 'Dell':
-					$nuevaVisita = 16;
-						break;	
-				case 'RCA':
-					$nuevaVisita = 17;
-					break;
-				case 'EuroCase':
-					$nuevaVisita = 18;
-					break;
-				case 'Novatech':
-					$nuevaVisita = 19;
-					break;
-				case 'EXO':
-					$nuevaVisita = 20;
-					break;	
-			}
-
 			$Bateria = '';
 			if (isset($_REQUEST['Bateria'])) {
 				$Bateria = $_REQUEST['Bateria'];
@@ -139,42 +76,11 @@
 				
 			}
 
-			$consultaNotebook = "UPDATE notebook SET nrovisita = nrovisita + (1) WHERE idNotebook = $nuevaVisita";
+			$consultaNotebook = "UPDATE notebook SET nrovisita = nrovisita + (1) WHERE nombre = '$marcaNotebook'";
 			mysqli_query($conexion, $consultaNotebook) or die ("Problemas -->".mysqli_error($conexion));
 		} else {
 			if ($tipoArticulo == "Netbook") {
 					
-					switch ($marcaNetbook) {
-						case 'Acer':
-							$nuevaVisita = 1;
-							break;
-						case 'Sony':
-							$nuevaVisita = 2;
-							break;
-						case 'RCA':
-							$nuevaVisita = 3;
-							break;
-						case 'Samsung':
-							$nuevaVisita = 4;
-							break;
-						case 'Positiva - BGH':
-							$nuevaVisita = 5;
-							break;
-						case 'Lenovo':
-							$nuevaVisita = 6;
-							break;
-						case 'Toshiba':
-							$nuevaVisita = 7;
-							break;
-						case 'PcBox':
-							$nuevaVisita = 8;
-							break;
-						case 'Bangho':
-							$nuevaVisita = 9;
-							break;
-					}
-
-
 					$Bateria = '';
 					if (isset($_REQUEST['Bateria'])) {
 						$Bateria = $_REQUEST['Bateria'];
@@ -234,7 +140,7 @@
 						}
 						
 					}
-					$consultaNetbook = "UPDATE netbook SET nrovisita = nrovisita + (1) WHERE idNetbook = $nuevaVisita";
+					$consultaNetbook = "UPDATE netbook SET nrovisita = nrovisita + (1) WHERE nombre = '$marcaNetbook'";
 					mysqli_query($conexion, $consultaNetbook) or die ("Problemas -->".mysqli_error($conexion));
 				} else {
 					if ($tipoArticulo == "All in One") {
