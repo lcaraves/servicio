@@ -78,11 +78,15 @@
           </div>
         </div><!--/.nav-collapse -->
       </div>
-    </nav>  
-    <br>
-    <br>
-    <br>
-    <br>
+    </nav>
+    <br><br><br>
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <center>
+          <h3>Lista de Clientes</h3>
+        </center>
+      </div>
+    </nav>
      <div class="form-inline">
        <div class="form-group col-xs-11"> 
          <div class="input-group col-xs-5">

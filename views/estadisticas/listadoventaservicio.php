@@ -82,7 +82,13 @@
     <br>
     <br>
     <br>
-    <br>
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <center>
+          <h3>Lista de Pedidos del Servicio Técnico</h3>
+        </center>
+      </div>
+    </nav>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#serviciotecnico" aria-controls="home" role="tab" data-toggle="tab">Servicio Técnico</a></li>

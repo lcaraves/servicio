@@ -25,7 +25,7 @@
 	}
 
 	if (!empty(($_REQUEST['fecha_salida_pedido']))) {
-		$fecha_salida_pedido = $fecha_salida_pedido = date('Y-m-d',strtotime($_REQUEST['fecha_salida_pedido']));
+		$fecha_salida_pedido = date('Y-m-d',strtotime($_REQUEST['fecha_salida_pedido']));
 	} else {
 		$fecha_salida_pedido = '0000-00-00';
 	}

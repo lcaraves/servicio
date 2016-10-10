@@ -9,7 +9,7 @@
       </div>
       <!-- Ventana MODAL -->
       <div class="modal-body">
-		    <div id="mostrarTabla"></div>
+		    <div class="mostrarTabla"></div>
         <div class="modal-footer">
          <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cerrar">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

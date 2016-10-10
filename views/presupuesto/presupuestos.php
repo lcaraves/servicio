@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <script src="../../js/presupuesto/presupuesto.js"></script>
 </head>
 <body>
 <?php 
@@ -89,11 +90,15 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-		<br>
-    <br>
-    <br>
+		<br><br><br>
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <center>
+          <h3>Lista de Ordenes de Servicios para Agregar Presupuesto</h3>
+        </center>
+      </div>
+    </nav>
     <div>
-
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#sinPresupuesto" aria-controls="home" role="tab" data-toggle="tab">Sin Presupuestos</a></li>
@@ -180,8 +185,8 @@
                                   <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Agregar
                                 </a>
                               </li>  
-                              <form method="POST" action="../../php/presupuesto/historialLlamadas.php" id="llamadas">
-                                <li data-toggle="modal" data-target="#llamadaHistorial">
+                              <form method="POST" action="../../php/presupuesto/historialLlamadas.php" id="llamadas" data-toggle="modal" data-target="#llamadaHistorial">
+                                <li  >
 									               <input type="hidden" name="idProducto" value='<?php echo $row['idProducto'];?>'>
 									               <input type="submit"  value="Historial LLamadas">	
 								                </li>  
@@ -256,7 +261,6 @@
           </div>
         </div>
       </div>
-
     </div>
     <footer class="bd-footer text-muted">
       <div class="avbar navbar-default navbar-static-top">
@@ -281,138 +285,3 @@
 <?php include("modal_agregar_monitor.php");?>
 <?php include("modal_agregar_netbook.php");?>
 <?php include("modal_agregar_clientes.php");?>
-
-<script>
-  $(document).ready(function(e) {
-     $('.agregarpresupuesto').click(function () {
-            
-        var idCliente = $(this).attr('id');
-        $('#id_agregarPresupuesto').val(idCliente);
-      });
-     
-     $('.agregarllamada').click(function () {
-            
-        var idCliente = $(this).attr('id');
-        $('#id_agregarLlamada').val(idCliente);
-      });
-     
-      $("#form-alta-presupuesto").submit(function(e) {
-          var url = "../../php/presupuesto/altaTrabajos.php"; // the script where you handle the form input.
-          $.ajax({
-                 type: "POST",
-                 url: url,
-                 data: $("#form-alta-presupuesto").serialize(), // serializes the form's elements.
-                 success: function(data)
-                 {
-                    $("#form-alta-presupuesto")[0].reset();
-                    $("#msj_ajax_trabajo").html(data);
-                  }
-               });
-          e.preventDefault(); // avoid to execute the actual submit of the form.       
-      });
-      //Dar de Alta las LLamadas
-      $("#form-alta-llamada").submit(function(e) {
-          var url = "../../php/presupuesto/altaLlamada.php"; // the script where you handle the form input.
-          $.ajax({
-                 type: "POST",
-                 url: url,
-                 data: $("#form-alta-llamada").serialize(), // serializes the form's elements.
-                 success: function(data)
-                 {
-                    $("#form-alta-llamada")[0].reset();
-                    $("#ajax_register_Llamada").html(data);
-                  }
-               });
-          e.preventDefault(); // avoid to execute the actual submit of the form.       
-      });
-      //para buscar
-      $('#filtrar').keyup(function () {
-
-        var rex = new RegExp($(this).val(), 'i');
-        $('.buscar tr').hide();
-        $('.buscar tr').filter(function () {
-            return rex.test($(this).text());
-        }).show();
-      }); 
-
-      //ALta de CLIENTE
-      $("#form-alta").submit(function(e) {
-          var url = "../../php/clientes/altaCliente.php"; // the script where you handle the form input.
-          $.ajax({
-                 type: "POST",
-                 url: url,
-                 data: $("#form-alta").serialize(), // serializes the form's elements.
-                 success: function(data)
-                 {
-                    $("#form-alta")[0].reset();
-                    $("#msj_ajax").html(data);
-                 }
-               });
-          e.preventDefault(); // avoid to execute the actual submit of the form.       
-      });
-	
-	     //historial de llamdas.
-      $("#llamadas").click(function(e) {
-          var url = "../../php/presupuesto/historialLlamadas.php";
-          var type = "POST";
-          $.ajax({
-                 type: type,
-                 url: url,
-                 data: $(this).serialize(), 
-                 success: function(data)
-                 {
-                    $("#mostrarTabla").html(data);
-                 }
-               });
-          e.preventDefault();
-      });
-
-      //ALTA de NOTEBBOK
-      $( "#form-guardar-AltaNotebook" ).submit(function( event ) {
-        var parametros = $(this).serialize();
-         $.ajax({
-            type: "POST",
-            url: "../../php/presupuesto/altaNotebook.php",
-            data: parametros,
-            success: function(datos){
-            $("#ajax_register_Note").html(datos);
-            load(1);
-            }
-        });
-        event.preventDefault();
-      }); 
-
-      //ALTA de NETBOOK
-      $( "#form-guardar-AltaNetbook" ).submit(function( event ) {
-        var parametros = $(this).serialize();
-         $.ajax({
-            type: "POST",
-            url: "../../php/presupuesto/altaNetbook.php",
-            data: parametros,
-              success: function(datos){
-            $("#ajax_register_Net").html(datos);
-            
-            load(1);
-            }
-        });
-        event.preventDefault();
-      });
-
-      //ALTA de MONITOR
-      $( "#form-guardar-AltaMonitor" ).submit(function( event ) {
-        var parametros = $(this).serialize();
-         $.ajax({
-            type: "POST",
-            url: "../../php/presupuesto/altaMonitor.php",
-            data: parametros,
-              success: function(datos){
-                $("#ajax_register_Monitor").html(datos);
-                load(1);
-              }
-        });
-        event.preventDefault();
-      });
-  });
-</script>
-
-

@@ -74,11 +74,15 @@
             </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <br/>
+    <br><br><br>
     <!-- end nav menu -->
-    <div class="page-header">
-      <h1><center>Lista de Precios</center></h1>
-    </div>
+     <nav class="navbar navbar-static-top">
+      <div class="container">
+        <center>
+          <h3>Lista de Precios</h3>
+        </center>
+      </div>
+    </nav>
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">

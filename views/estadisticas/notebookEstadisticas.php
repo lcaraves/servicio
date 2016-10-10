@@ -21,6 +21,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="../../css/styles.css" media="screen">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="../../js/estadisticas/ensamblado.js"></script>
 </head>
 <body>
   <?php 
@@ -74,12 +79,36 @@
             </div><!--/.nav-collapse -->
       </div>
     </nav>
-		<br>
-    </br>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-
-
+		<br><br><br>
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <center>
+          <h3>Estadisticas del Servicio Técnico</h3>
+        </center>
+      </div>
+    </nav>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#notebook" aria-controls="home" role="tab" data-toggle="tab">Notebook</a></li>
+      <li role="presentation"><a href="#netbook" aria-controls="netbook" role="tab" data-toggle="tab">Netbook</a></li>
+      <li role="presentation"><a href="#ensamblado" aria-controls="ensamblado" role="tab" data-toggle="tab">Ensamblado</a></li>
+    </ul>
+    <div class="tab-content"> 
+      <div role="tabpanel" class="tab-pane fade in active" id="notebook">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade active"  id="netbook">
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="ensamblado">
+        <div class="form-inline">
+          <div class="form-group col-md-2 col-md-offset-10">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#altaEnsamblado">
+                <span class="glyphicon glyphicon-plus"></span> Ensamblado
+            </button>
+          </div>
+        </div>
+    </div>  
     <footer class="bd-footer text-muted">
       <div class="avbar navbar-default navbar-static-top">
         <div class="container">
@@ -95,9 +124,6 @@
     </footer>
 </body>
 </html>
-
-
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
   <?php 
@@ -128,6 +154,7 @@
     chart.draw(data, options);
   } 
 </script>
+
 <script type="text/javascript">
   <?php 
     $consultaNetbook = "SELECT * FROM netbook WHERE nrovisita > 0 ORDER BY nrovisita  DESC";
@@ -157,6 +184,10 @@
      chart.draw(data, options);
    }  
 </script>
+
+<?php include('modal_estadisticas/modal_agregar_ensamblado.php') ?>
+
+
 
 
 
