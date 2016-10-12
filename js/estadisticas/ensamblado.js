@@ -23,8 +23,8 @@ $(document).ready(function() {
 
 	$( function() {
     	$( "#calendario" ).datepicker();
-    	$( "#desdeCalendario" ).datepicker();
-    	$( "#hastaCalendario" ).datepicker();
+    	$( "#desdeCalendario" ).datepicker({ dateFormat: 'dd-mm-yy' }).val();
+    	$( "#hastaCalendario" ).datepicker({ dateFormat: 'dd-mm-yy' }).val();
   	});
 
 	$('#busqueda-desde-hasta-ensamblado').submit(function(e) {

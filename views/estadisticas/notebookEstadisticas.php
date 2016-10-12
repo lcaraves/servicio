@@ -26,6 +26,13 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="../../js/estadisticas/ensamblado.js"></script>
+  <!-- Select2 -->
+  <script type="text/javascript" src="../../js/select2/js/select2.full.js"></script>
+  <script type="text/javascript" src="../../js/select2/js/select2.full.min.js"></script>
+  <script type="text/javascript" src="../../js/select2/js/select2.js"></script>
+  <script type="text/javascript" src="../../js/select2/js/select2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../js/select2/css/select2.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="../../js/select2/css/select2.min.css" media="screen">
 </head>
 <body>
   <?php 
@@ -250,7 +257,14 @@
       chart.draw(view, options);
     }
   </script>
-
+  
+  <script>
+    $(document).ready(function() {
+      $(".seleccionEnsamblado").select2({
+         placeholder: "Selecionar Items"
+      });
+    });
+  </script>
 
 
 
