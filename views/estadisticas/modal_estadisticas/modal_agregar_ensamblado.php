@@ -39,7 +39,7 @@
                  ?>
                 <label for="" class="control-label col-sm-2">*Articulo</label>
                 <div class="col-sm-8">
-                  <select name="articulo_ensamblado_select" id="" class="form-control">
+                  <select name="articulo_ensamblado_select" class="form-control seleccionEnsamblado" style="width: 100%;">
                     <?php while ($row = mysqli_fetch_array($resulArticulo)){ ?>
                     <option value="<?php echo $row['articulo_ensamblado'] ?>"> <?php echo $row['articulo_ensamblado'] ?> </option>
                      <?php 
@@ -57,7 +57,7 @@
               <div class="row form-group">
                 <label for="" class="control-label col-sm-2">*Fecha</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="fecha_ensamblado" value="<?php echo date("m/d/Y");?>" id="calendario">
+                  <input type="text" class="form-control" name="fecha_ensamblado" value="<?php echo date("d/m/Y");?>" id="calendario">
                 </div>
               </div>
           </div>

@@ -442,7 +442,7 @@
                   </div>
                   <div class="col-xs-3"></div>
                   <div class="form-group"  id="listaCorel">
-                    <select name="seleccionCorel" class="form-control" style="width: 50%;">
+                    <select name="seleccionCorel" class="form-control corelDraw" style="width: 50%;">
                       <option value=""></option>
                       <option value="Corel x5">x5</option>
                       <option value="Corel x6">x6</option>
