@@ -4,7 +4,7 @@
 	$hasta = date('Y-m-d',strtotime( $_REQUEST['hasta']));
 
 
-	$consultaEnsamblado = "SELECT *, SUM(e.cantidad_ensamblado) FROM ensamblado e WHERE e.fecha_ensamblado BETWEEN '$desde' AND '$hasta' GROUP BY e.articulo_ensamblado ORDER BY e.articulo_ensamblado DESC";
+	$consultaEnsamblado = "SELECT *, SUM(e.cantidad_ensamblado) FROM ensamblado e WHERE e.fecha_ensamblado BETWEEN '$desde' AND '$hasta' GROUP BY e.articulo_ensamblado ORDER BY e.articulo_ensamblado ASC";
 	$resultEnsamblado = mysqli_query($conexion, $consultaEnsamblado) or die("PROBLEMA CON LA CONSULTA DE Ensamblado.");
 
 ?>

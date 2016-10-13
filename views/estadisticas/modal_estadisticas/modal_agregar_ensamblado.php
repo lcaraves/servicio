@@ -14,9 +14,9 @@
                 <p class="col-md-8"><small><strong>*</strong> Campos Obligatorios</small></p>
               </div>
               <div class="form-group" >
-                <div class="checkbox col-md-offset-10" id="nuevo_articulo">
+                <div class="checkbox col-md-offset-10">
                       <label>
-                        <input type="checkbox" id="optionsRadios1" value="Bateria" autocomplete="off" >
+                        <input type="checkbox" id="optionsRadios1" value="Bateria" autocomplete="off" class="nuevo_articulo">
                         Nuevo
                       </label>
                     </div>

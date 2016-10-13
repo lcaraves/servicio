@@ -15,10 +15,17 @@ $(document).ready(function() {
 	});
 
 	$('#articulo_text').hide();
-
-	$('#nuevo_articulo').click(function() {
-		$('#articulo_text').show();		
-		$('#articulo_select').hide();
+	//Realiza el camnbio si quiero nuevo, o listar articulos.
+	$(".nuevo_articulo").on( 'click', function() {
+	    if( $(this).is(':checked') ) {
+	        // Hacer algo si el checkbox ha sido seleccionado
+	    	$('#articulo_text').show();
+	    	$('#articulo_select').hide();		    
+	    } else {
+	        // Hacer algo si el checkbox ha sido deseleccionado
+	        $('#articulo_text').hide();
+	    	$('#articulo_select').show();		    
+	    }
 	});
 
 	$( function() {

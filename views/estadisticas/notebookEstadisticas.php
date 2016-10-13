@@ -241,7 +241,7 @@
 
       var options = {
         title: "Cantidad de Máquinas Ensambladas",
-        width: 950,
+        width: 1200,
         height: 500,
         bar: {groupWidth: "50%"},
         legend: { position: "none" },
