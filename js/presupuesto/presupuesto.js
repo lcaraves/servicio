@@ -67,7 +67,7 @@ $(document).ready(function(e) {
   });
 
    //historial de llamdas.
-  $("#llamadas").click(function(e) {
+  $(".llamadas").click(function(e) {
       var type = "POST";
       var url = "../../php/presupuesto/historialLlamadas.php";
       var parametros = $(this).serialize();

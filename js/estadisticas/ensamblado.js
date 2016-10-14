@@ -29,7 +29,7 @@ $(document).ready(function() {
 	});
 
 	$( function() {
-    	$( "#calendario" ).datepicker();
+    	$( "#calendario" ).datepicker({ dateFormat: 'dd-mm-yy' }).val();
     	$( "#desdeCalendario" ).datepicker({ dateFormat: 'dd-mm-yy' }).val();
     	$( "#hastaCalendario" ).datepicker({ dateFormat: 'dd-mm-yy' }).val();
   	});

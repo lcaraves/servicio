@@ -176,21 +176,25 @@
                               <li class="dropdown-header">Trabajos</li>                    
                               <li id="<?php echo $row['idProducto'] ?>" class="agregarpresupuesto" data-toggle="modal" data-target="#altaPresupuesto">
                                   <a href="#">
-                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Agregar
+                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">  </span> Agregar
                                   </a>
                               </li>
+                              <li role="separator" class="divider"></li>
                               <li class="dropdown-header">Llamadas</li>  
                               <li class="agregarllamada" data-toggle="modal" data-target="#altallamada" id="<?php echo $row['idProducto'] ?>">
                                 <a href="#">
-                                  <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Agregar
+                                  <span class="glyphicon glyphicon-earphone" aria-hidden="true">  </span> Agregar
                                 </a>
                               </li>  
-                              <form method="POST" action="../../php/presupuesto/historialLlamadas.php" id="llamadas" data-toggle="modal" data-target="#llamadaHistorial">
-                                <li  >
-									               <input type="hidden" name="idProducto" value='<?php echo $row['idProducto'];?>'>
-									               <input type="submit"  value="Historial LLamadas">	
-								                </li>  
-                              </form>
+                              <li>
+                              <a href="#">
+                                    <form method="GET" action="../../php/presupuesto/historialLlamadas.php" class="llamadas" data-toggle="modal" data-target="#llamadaHistorial">
+                                      <input type="hidden" name="idProducto" value='<?php echo $row['idProducto'];?>'>
+                                      <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  
+                                      <input type="submit" value="Historial" class="btn-link" style="text-decoration: none;color:black">
+                                    </form>
+                                   </a>
+                              </li>  
                             </ul>
                           </li>
                         </ul>
