@@ -2,10 +2,10 @@
 	require_once '../conexion.php';
 
  	if (empty($_REQUEST['nombre'])){
-		$errors[] = "Nombre vacío";
+		$errors[] = "</br> El campo <strong>Nombre</strong> esta vacío.";
 	} else 
 		if (!empty($_REQUEST['nombre'])){
-			
+
 			$con = "SELECT * FROM  allinone";
 			$resultado = mysqli_query($conexion, $con) or die("Problemas con la consulta para insert ALTA ALL IN ONE".mysqli_error($conexion));
 			$bool = false;
@@ -17,16 +17,14 @@
 			}
 
 			if ($bool = false) {
-
 				$nrovisita = 0;
-				$consulta = "INSERT INTO monitor (nombre, nrovisita ) 
+				$consulta = "INSERT INTO allinone (nombre, nrovisita ) 
 							VALUES (
 							'$_REQUEST[nombre]',
 							'$nrovisita')";
-				$msjConsulta = mysqli_query($conexion, $consulta) or die("Problemas con la consulta para insert ALTA MONITOR".mysqli_error($conexion));
-		
+				$msjConsulta = mysqli_query($conexion, $consulta) or die("Problemas con la consulta para insert ALTA ALL IN ONE".mysqli_error($conexion));
 				if ($msjConsulta) {
-					$msj [] = "Los datos han sido guardados satisfactoriamente."; 
+					$msj [] = "</br> Los datos han sido guardados satisfactoriamente."; 
 					} else {
 						$errors[] = "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($conexion);
 					} 
@@ -64,3 +62,5 @@
 				}
 				mysqli_close($conexion);
 			?>
+		
+	

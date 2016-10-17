@@ -5,18 +5,30 @@
 		$errors[] = "Nombre vacío";
 	} else 
 		if (!empty($_REQUEST['nombre'])){
-			$nrovisita = 0;
-			$consulta = "INSERT INTO netbook (nombre, nrovisita ) 
-						VALUES (
-						'$_REQUEST[nombre]',
-						'$nrovisita')";
-			$msjConsulta = mysqli_query($conexion, $consulta) or die("Problemas con la consulta para insert ALTA NOTEBOOK".mysqli_error($conexion));
-		
-			if ($msjConsulta) {
-				$msj [] = "Los datos han sido guardados satisfactoriamente."; 
-				} else {
-					$errors[] = "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($conexion);
-				} 
+
+			$con = "SELECT * FROM  allinone";
+			$resultado = mysqli_query($conexion, $con) or die("Problemas con la consulta para insert ALTA ALL IN ONE".mysqli_error($conexion));
+			$bool = false;
+			while ($row = mysqli_fetch_array($resultado)) {
+				if ($row['nombre']==$_REQUEST['nombre']) {
+					$errors [] = "</br>El nombre que quiere Utilizar ya se encuentra en nuestra Base de Datos.";
+					$bool = true;
+				}
+			}
+			if ($bool = false) {
+				$nrovisita = 0;
+				$consulta = "INSERT INTO netbook (nombre, nrovisita ) 
+							VALUES (
+							'$_REQUEST[nombre]',
+							'$nrovisita')";
+				$msjConsulta = mysqli_query($conexion, $consulta) or die("Problemas con la consulta para insert ALTA NOTEBOOK".mysqli_error($conexion));
+			
+				if ($msjConsulta) {
+					$msj [] = "Los datos han sido guardados satisfactoriamente."; 
+					} else {
+						$errors[] = "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($conexion);
+					} 
+			}
 		} else {
 			$errors [] = "Error desconocido.";
 			}

@@ -92,7 +92,6 @@ $(document).ready(function(e) {
         data: parametros,
         success: function(datos){
         $("#ajax_register_Note").html(datos);
-        load(1);
         }
     });
     event.preventDefault();
@@ -107,8 +106,6 @@ $(document).ready(function(e) {
         data: parametros,
           success: function(datos){
         $("#ajax_register_Net").html(datos);
-        
-        load(1);
         }
     });
     event.preventDefault();
@@ -128,4 +125,18 @@ $(document).ready(function(e) {
     });
     event.preventDefault();
   });
+  //ALTA de ALL IN ONE
+  $( "#form-guardar-AllInOne" ).submit(function( event ) {
+    var parametros = $(this).serialize();
+     $.ajax({
+        type: "POST",
+        url: "../../php/presupuesto/altaAllinOne.php",
+        data: parametros,
+          success: function(datos){
+            $("#ajax_register_allinone").html(datos);
+          }
+    });
+    event.preventDefault();
+  });
+  
 });

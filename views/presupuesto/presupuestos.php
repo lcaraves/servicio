@@ -55,10 +55,7 @@
                 <li data-toggle="modal" data-target="#agregarNotebook"><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Notebook</a></li>
                 <li data-toggle="modal" data-target="#agregarNetbook"><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Netbook</a></li>
                 <li data-toggle="modal" data-target="#agregarMonitor"><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Monitor</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li data-toggle="modal" data-target="#agregarAllinOne"><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> All In One</a></li>
               </ul>
             </li>          
           </ul>
@@ -288,4 +285,5 @@
 <?php include("modal_agregar_notebook.php");?>
 <?php include("modal_agregar_monitor.php");?>
 <?php include("modal_agregar_netbook.php");?>
+<?php include("modal_agregar_allinone.php");?>
 <?php include("modal_agregar_clientes.php");?>

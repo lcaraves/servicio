@@ -211,21 +211,23 @@
                       }
                      ?>
                     </select>
-                  </div><!-- Select Monitor -->
+                  </div><!-- End Select Monitor -->
                   <div class="col-xs-2" id="select6">
+                     <?php 
+                       $consultaAllinOne = "SELECT * FROM allinone ORDER BY nombre";
+                       $resultAllinOne = mysqli_query ($conexion, $consultaAllinOne) OR die("PROBLEMAS CON LA CONSULTA DE All In One");
+                      ?>                   
                     <select name="select6"  class="form-control">
                       <option value="">Seleccionar</option>
-                      <option value="Acer">Acer</option>       
-                      <option value="Asus">Asus</option>
-                      <option value="Dell">Dell</option>
-                      <option value="HP">HP</option>
-                      <option value="LG">LG</option>
-                      <option value="Lenovo">Lenovo</option>
-                      <option value="Sony Vaio">Sony Vaio</option>
-                      <option value="Toshiba">Toshiba</option>
-                      <option value="Exo">Exo</option>
+                       <?php 
+                      while ($row = mysqli_fetch_array($resultAllinOne)) { 
+                    ?>
+                      <option value="<?php echo $row['nombre'] ?>"><?php echo $row['nombre'] ?></option> 
+                     <?php 
+                       }
+                      ?>       
                     </select>
-                  </div><!-- Select All In One -->
+                  </div><!-- End Select All In One -->
                   <div class="col-xs-2" id="select9">
                     <select name="select9"  class="form-control">
                       <option value="">Seleccionar</option>
@@ -240,7 +242,7 @@
                       <option value="Toshiba">Toshiba</option>
                       <option value="Xerox">Xerox</option>            
                     </select>
-                  </div><!-- Select9 Impresoras -->
+                  </div><!-- End Select9 Impresoras -->
                   <div class="col-xs-2" id="select10">
                     <input type="text" class="form-control" placeholder="Modelo" name="modeloImpresora" autocomplete="off">
                   </div>
