@@ -276,8 +276,8 @@
 	
 	
 	if (!empty($_REQUEST['accesorios'])) {
-		if (strlen($_REQUEST['accesorios'])> 45) {
-			$errors [] = "</br> El campo <strong>accesorios</strong>, es mayor que 45 Caracteres. </br>";
+		if (strlen($_REQUEST['accesorios'])> 70) {
+			$errors [] = "</br> El campo <strong>accesorios</strong>, es mayor que 70 Caracteres. </br>";
 			$accesorios = $_REQUEST['accesorios']; 		
 		} else{
 			$accesorios = $_REQUEST['accesorios']; 		
@@ -289,9 +289,9 @@
 	if (!empty($_REQUEST['serial'])) {
 		if (strlen($_REQUEST['serial'])> 30) {
 			$errors [] = "</br> El campo <strong>serial</strong>, es mayor que 30 Caracteres. </br>";
-			$accesorios = $_REQUEST['serial']; 		
+			$serial = $_REQUEST['serial']; 		
 		} else{
-			$accesorios = $_REQUEST['serial']; 		
+			$serial = $_REQUEST['serial']; 		
 		}
 		}else{
 		$serial = 'No se agrego Serial';
@@ -309,8 +309,8 @@
 	}
 
 	if (!empty($_REQUEST['estadoEquipo'])) {
-		if (strlen($_REQUEST['estadoEquipo'])> 60) {
-			$errors [] = "</br> El campo <strong>Estado del Equipo</strong>, es mayor que 60 Caracteres. </br>";
+		if (strlen($_REQUEST['estadoEquipo'])> 90) {
+			$errors [] = "</br> El campo <strong>Estado del Equipo</strong>, es mayor que 90 Caracteres. </br>";
 			$estadoEquipo = $_REQUEST['estadoEquipo']; 		
 		} else{
 			$estadoEquipo = $_REQUEST['estadoEquipo'];}

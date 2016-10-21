@@ -3,8 +3,8 @@
 
 	//Inicialización de Variables. Placa Red PCI 10/100 TF - 239
 	if (!empty($_REQUEST['articulo_pedido'])) {
-		if (strlen($_REQUEST['articulo_pedido']) > 40) {
-		$errors[] = "</br>El Articulo debe ser menor que 40.";
+		if (strlen($_REQUEST['articulo_pedido']) > 80) {
+		$errors[] = "</br>El Articulo debe ser menor que 80.";
 		}else {
 			$articulo_pedido = trim($_REQUEST['articulo_pedido']);
 		}

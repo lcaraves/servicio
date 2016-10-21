@@ -7,7 +7,7 @@
 		if (!empty($_REQUEST['nombre'])){
 
 			$con = "SELECT * FROM  allinone";
-			$resultado = mysqli_query($conexion, $con) or die("Problemas con la consulta para insert ALTA ALL IN ONE".mysqli_error($conexion));
+			$resultado = mysqli_query($conexion, $con) or die("Problemas con la consulta para Select ALL IN ONE".mysqli_error($conexion));
 			$bool = false;
 			while ($row = mysqli_fetch_array($resultado)) {
 				if ($row['nombre']==$_REQUEST['nombre']) {

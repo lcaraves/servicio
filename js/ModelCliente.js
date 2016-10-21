@@ -27,13 +27,13 @@ $(document).ready(function(e) {
 	$('.modificarCliente').click(function () {
 	      
 	  var idCliente = $(this).attr('id');
-	  var nombre = $('#nombre_' + idCliente).text();
-	  var apellido = $('#apellido_' + idCliente).text();
-	  var direccion = $('#direccion_' + idCliente).text();
-	  var telefono = $('#telefono_' + idCliente).text();
-	  var email = $('#email_' + idCliente).text();
-	  var localidad = $('#localidad_' + idCliente).text();
-	  var provincia = $('#provincia_' + idCliente).text();
+	  var nombre = $.trim($('#nombre_' + idCliente).text());
+	  var apellido = $.trim($('#apellido_' + idCliente).text());
+	  var direccion = $.trim($('#direccion_' + idCliente).text());
+	  var telefono = $.trim($('#telefono_' + idCliente).text());
+	  var email = $.trim($('#email_' + idCliente).text());
+	  var localidad = $.trim($('#localidad_' + idCliente).text());
+	  var provincia = $.trim($('#provincia_' + idCliente).text());
 
 	  $('#id_update').val(idCliente);
 	  $('#nombre_update').val(nombre);

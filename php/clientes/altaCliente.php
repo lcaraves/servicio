@@ -30,11 +30,25 @@
 
 	//Inicialización Telefono.
 	if (isset($_REQUEST['telefono'])) {
-		if (!empty($_REQUEST['apellido'])) {
+		if (!empty($_REQUEST['telefono'])) {
 			if (strlen($_REQUEST['telefono'])>10) {
 				$errors [] = "</br>El campo <strong>telefono</strong> es mayor de 8 Caracteres.";
 			}else{
-				$telefono = $_REQUEST['telefono'];
+
+				$con = "SELECT * FROM  clientes";
+				$resultado = mysqli_query($conexion, $con) or die("Problemas con la consulta de Select de Clientes".mysqli_error($conexion));
+				$bool = false;
+				while ($row = mysqli_fetch_array($resultado)) {
+					if ($row['telefono']==$_REQUEST['telefono']) {
+						$errors [] = "</br>El Cliente que quiere dar de Alta, ya se encuentra cargado con el número de Telefono:".$_REQUEST['telefono'];
+						$bool = true;
+					}
+				}
+
+				if ($bool = false) {
+					$telefono = $_REQUEST['telefono'];
+				}
+				
 			}
 		}else{
 			$errors [] = "</br>El campo <strong>telefono</strong>, esta vacío.";

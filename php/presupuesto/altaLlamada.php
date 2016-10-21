@@ -22,8 +22,8 @@
 	//Campo Observaciones
 	if (isset($_REQUEST['observaciones'])) {
 		if (!empty($_REQUEST['observaciones'])) {
-			if (strlen($_REQUEST['observaciones']) > 35) {
-				$errors [] = "</br> El campo <strong>observaciones</strong> es mayor que 35 caracteres.";
+			if (strlen($_REQUEST['observaciones']) > 60) {
+				$errors [] = "</br> El campo <strong>observaciones</strong> es mayor que 60 caracteres.";
 			}else{
 				$observaciones = $_REQUEST['observaciones'];		
 			}

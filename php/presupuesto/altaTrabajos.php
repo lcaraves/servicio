@@ -7,8 +7,8 @@ mysqli_query($conexion, $consultaUpdate) or die("Problemas con la consulta para 
 //Campo Trabajo
 if (isset($_REQUEST['trabajoRealizado'])) {
 	if (!empty($_REQUEST['trabajoRealizado'])) {
-		if (strlen($_REQUEST['trabajoRealizado']) > 60) {
-			$errors [] = "</br> El campo <strong>Trabajo Realizado</strong>, es mayor que 60 caracteres.";
+		if (strlen($_REQUEST['trabajoRealizado']) > 90) {
+			$errors [] = "</br> El campo <strong>Trabajo Realizado</strong>, es mayor que 90 caracteres.";
 		}else{
 			$trabajoRealizado = $_REQUEST['trabajoRealizado'];
 		}
@@ -27,8 +27,8 @@ if (!empty($_REQUEST['cambioProducto']) OR !empty($_REQUEST['otrosProductos'])) 
 	}
 //Campo Observaciones
 if (isset($_REQUEST['observaciones'])) {
-	if (strlen($_REQUEST['observaciones'])>75) {
-		$errors [] = "</br> El campo <strong>observaciones</strong>, es mayor que 45 caracteres.";
+	if (strlen($_REQUEST['observaciones'])>100) {
+		$errors [] = "</br> El campo <strong>observaciones</strong>, es mayor que 100 caracteres.";
 		}else{
 			$observaciones = $_REQUEST ['observaciones'];
 		}
