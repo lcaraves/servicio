@@ -26,6 +26,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="../../js/estadisticas/ensamblado.js"></script>
+  <script src="../../js/estadisticas/pc-escritorio.js"></script>
   <!-- Select2 -->
   <script type="text/javascript" src="../../js/select2/js/select2.full.js"></script>
   <script type="text/javascript" src="../../js/select2/js/select2.full.min.js"></script>
@@ -99,6 +100,8 @@
       <li role="presentation" class="active"><a href="#notebook" aria-controls="home" role="tab" data-toggle="tab">Notebook</a></li>
       <li role="presentation"><a href="#netbook" aria-controls="netbook" role="tab" data-toggle="tab">Netbook</a></li>
       <li role="presentation"><a href="#ensamblado" aria-controls="ensamblado" role="tab" data-toggle="tab">Ensamblado</a></li>
+      <li role="presentation"><a href="#pc-escritorio" aria-controls="ensamblado" role="tab" data-toggle="tab">Pc - Escritorio</a></li>
+      
     </ul>
 
     <div class="tab-content"> 
@@ -138,6 +141,29 @@
           <div class="ajax_busqueda_ensamblado" ></div>
           <div id="columnchart_values" style="width: 900px; height: 500px;"></div>    
         </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade active" id="pc-escritorio">
+        <br>
+        <form action="../../php/estadisticas/busquedaDesdeHastaPcEscritorio.php" method="POST" id="busqueda-desde-hasta-pc-escritorio">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="" class="control-label col-sm-3">Desde</label>
+              <input type="text" id="desdePc" class="form-control col-xs-2" name="desde" placeholder="dd-mm-aaaa">  
+            </div>
+            <div class="form-group">
+              <label for="" class="control-label col-sm-3">Hasta</label>
+              <input type="text" id="hastaPc" class="form-control col-xs-2" name="hasta" placeholder="dd-mm-aaaa">  
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" aria-label="Left Align">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>  
+            </div>
+          </div>
+          <br>
+          <div class="ajax_busqueda_pc_escritorio"></div>
+        </form>
+        </br>
       </div>
      </div> 
          

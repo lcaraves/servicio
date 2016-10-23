@@ -45,7 +45,7 @@
 					}
 				}
 
-				if ($bool = false) {
+				if ($bool == false) {
 					$telefono = $_REQUEST['telefono'];
 				}
 				
