@@ -210,7 +210,7 @@
            <div class="form-inline">
               <?php 
                require '../../php/conexion.php';
-               $consultaConPresupuesto = "SELECT * FROM productos p, clientes c, trabajos t WHERE p.idCliente = c.idCliente  and t.idProducto = p.idProducto   ORDER BY p.idProducto DESC LIMIT 40";
+               $consultaConPresupuesto = "SELECT * FROM productos p, clientes c, trabajos t WHERE p.idCliente = c.idCliente  and t.idProducto = p.idProducto   ORDER BY p.idProducto DESC LIMIT 100";
                $resultadosCP = mysqli_query($conexion, $consultaConPresupuesto) or die("PROBLEMA CON LA CONSULTA con PRESUPUESTO.");
 
               ?>
@@ -225,41 +225,38 @@
           <br><br>
           <div class="table-responsive">
             <table class="table table-hover">
+              <?php while ($row = mysqli_fetch_array($resultadosCP)){ ?>
               <thead>
+                <tr><td colspan="5"></td></tr> 
                 <tr>
-                    <th>#</th>
                     <th>Cliente</th>
                     <th>Artículo</th>
                     <th>Fecha Ingreso</th>
-                    <th>Falla del Cliente</th>
-                    <th>Presepuesto</th>
-                </tr>  
+                    <th colspan="2">Falla del Cliente</th>
+                </tr>
+
               </thead>
-                <?php while ($row = mysqli_fetch_array($resultadosCP)){ ?>
+                
               <tbody class="buscarConPresupuesto">
-                <tr class="<?php if ($row['estado'] ==3) {
-                  echo "success";
-                } else {
-                      if ($row['estado'] ==2) {
-                        echo "warning";
-                      } else {
-                        if ($row['estado'] ==1) {
-                          echo "info";
-                        } else {
-                          # code...
-                        }
-                        
-                      }
-                      
-                }
-                 ?>">
-                    <td> <?php echo $row['idProducto'] ?> </td>
-                    <td> <?php echo $row['nombre'] ." ".$row['apellido'] ?> </td>
+                <tr <?php include("logica_color_table.php"); ?> >
+                    <td rowspan="4"> <?php echo $row['nombre'] ." ".$row['apellido'] ?> </td>
                     <td> <?php echo $row['articulo'] ?> </td>
                     <td> <?php echo $row['fechaIngreso'] ?> </td>                    
-                    <td> <?php echo $row['fallaCliente'] ?> </td>
-                    <td> <?php echo $row['presupuesto'] ?> </td>
-                </tr>  
+                    <td colspan="2"> <?php echo $row['fallaCliente'] ?> </td>
+                      
+                </tr>
+                  <tr>
+                    <th>Observaciones</th>
+                    <th>Cambio Producto</th>
+                    <th>Trabajo Realizado</th>
+                    <th>Presepuesto</th>
+                  </tr>
+                <tr <?php include("logica_color_table.php"); ?> >
+                  <td> <?php echo $row['observaciones'] ?> </td>
+                  <td> <?php echo $row['cambioProducto'] ?> </td>
+                  <td> <?php echo $row['trabajoRealizado'] ?> </td>
+                  <td> <?php echo $row['presupuesto'] ?> </td>
+                </tr>
               </tbody>
               <?php 
                 } 
