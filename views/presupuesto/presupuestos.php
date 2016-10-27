@@ -109,7 +109,7 @@
            <div class="form-inline">
               <?php 
                require '../../php/conexion.php';
-               $consultaPre = "SELECT * FROM productos p, clientes c WHERE P.idCliente = c.idCliente ORDER BY p.idProducto DESC LIMIT 40";
+               $consultaPre = "SELECT * FROM productos p, clientes c WHERE P.idCliente = c.idCliente ORDER BY p.idProducto DESC LIMIT 100";
                $resultadosPre = mysqli_query($conexion, $consultaPre) or die("PROBLEMA CON LA CONSULTA DE PRESUPUESTO.");
 
               ?>
@@ -227,7 +227,6 @@
             <table class="table table-hover">
               <?php while ($row = mysqli_fetch_array($resultadosCP)){ ?>
               <thead>
-                <tr><td colspan="5"></td></tr> 
                 <tr>
                     <th>Cliente</th>
                     <th>Artículo</th>
@@ -243,19 +242,24 @@
                     <td> <?php echo $row['articulo'] ?> </td>
                     <td> <?php echo $row['fechaIngreso'] ?> </td>                    
                     <td colspan="2"> <?php echo $row['fallaCliente'] ?> </td>
-                      
                 </tr>
-                  <tr>
+                  <tr <?php include("logica_color_table.php"); ?> >
                     <th>Observaciones</th>
                     <th>Cambio Producto</th>
                     <th>Trabajo Realizado</th>
-                    <th>Presepuesto</th>
+                    <th>Garantia</th>
                   </tr>
                 <tr <?php include("logica_color_table.php"); ?> >
                   <td> <?php echo $row['observaciones'] ?> </td>
                   <td> <?php echo $row['cambioProducto'] ?> </td>
                   <td> <?php echo $row['trabajoRealizado'] ?> </td>
-                  <td> <?php echo $row['presupuesto'] ?> </td>
+                  <td> <?php echo $row['garantia'] ?> </td>
+                </tr>
+                <tr <?php include("logica_color_table.php"); ?> >
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style="background-color: #B6DCE0"> <?php echo $row['presupuesto'] ?> </td>
                 </tr>
               </tbody>
               <?php 
