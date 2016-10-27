@@ -50,6 +50,15 @@ $(document).ready(function(e) {
     }).show();
   }); 
 
+   $('#filtrarConPresupuesto').keyup(function () {
+
+    var rex = new RegExp($(this).val(), 'i');
+    $('.buscarConPresupuesto tr').hide();
+    $('.buscarConPresupuesto tr').filter(function () {
+        return rex.test($(this).text());
+    }).show();
+  }); 
+
   //ALta de CLIENTE
   $("#form-alta").submit(function(e) {
       var url = "../../php/clientes/altaCliente.php"; // the script where you handle the form input.

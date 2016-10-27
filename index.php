@@ -19,14 +19,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
-  
-  
-  
-  <script type="text/javascript" src="js/buscadorajax.js"></script>
-  <script type="text/javascript" src="js/seleccionarArticulos.js"></script>
-  <script type="text/javascript" src="js/altaOrdenServicio.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen">
+
   <!-- chosen -->
   <script type="text/javascript" src="js/chosen/chosen.jquery.min.js"></script>
   <script type="text/javascript" src="js/chosen/chosen.jquery.js"></script>
@@ -39,6 +32,9 @@
   <script type="text/javascript" src="js/select2/js/select2.min.js"></script>
   <link rel="stylesheet" type="text/css" href="js/select2/css/select2.css" media="screen">
   <link rel="stylesheet" type="text/css" href="js/select2/css/select2.min.css" media="screen">
+      <!-- js/index.js -->
+  <script type="text/javascript" src="js/inicio/seleccionarArticulos.js"></script>
+  <script type="text/javascript" src="js/inicio/altaOrdenServicio.js"></script>
 </head>
 <body>
 <?php 
@@ -518,7 +514,7 @@
           </center>    
       </div>
     </div>
-  </footer>   
+  </footer> 
 </body>
 </html>
 
@@ -612,34 +608,5 @@
      </div><!-- /.modal-dialog -->.
   </div><!-- /.modal -->
 </form>
-<script>
-  $(document).ready(function() {
-
-     $(".chosen").chosen();
-     $(".packadobe").select2({
-        placeholder: "Selecionar Items",
-        allowClear: true,
-        tags: true
-     });
-     $(".corelDraw").select2({
-        placeholder: "Selecionar Items"
-     });
-    //Alta de Cliente --> Formulario
-    $("#form-alta").submit(function(e) {
-        var url = "php/clientes/altaCliente.php"; // the script where you handle the form input.
-        $.ajax({
-               type: "POST",
-               url: url,
-               data: $("#form-alta").serialize(), // serializes the form's elements.
-               success: function(data)
-               {
-                  $("#form-alta")[0].reset();
-                  $("#msj_success_ajax").html(data);
-               }
-             });
-        e.preventDefault(); // avoid to execute the actual submit of the form.       
-    });
-  });
-</script>
 
 

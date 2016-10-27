@@ -214,8 +214,15 @@
                $resultadosCP = mysqli_query($conexion, $consultaConPresupuesto) or die("PROBLEMA CON LA CONSULTA con PRESUPUESTO.");
 
               ?>
+              <br>
+               <div class="form-group col-xs-11"> 
+                 <div class="input-group col-xs-5">
+                  <span class="input-group-addon">Buscar</span>
+                  <input id="filtrarConPresupuesto" type="text" class="form-control" placeholder="Ingresa el nombre del  que deseas Buscar...">
+                </div>
+              </div>
           </div>
-          <br>
+          <br><br>
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
@@ -229,7 +236,7 @@
                 </tr>  
               </thead>
                 <?php while ($row = mysqli_fetch_array($resultadosCP)){ ?>
-              <tbody class="buscar">
+              <tbody class="buscarConPresupuesto">
                 <tr class="<?php if ($row['estado'] ==3) {
                   echo "success";
                 } else {
@@ -275,7 +282,7 @@
             </center>    
         </div>
       </div>
-    </footer>
+    </footer>   
 </body>
 </html>
 
