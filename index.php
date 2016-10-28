@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 	<title>Inicio</title>
@@ -84,6 +84,9 @@
               <li><a href="views/presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
               <li><a href="views/estadisticas/listadoventaservicio.php">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
+              <li>
+              <a href="views/pedidocliente/pedidocliente.php">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Clientes</a></li>
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="views/estadisticas/notebookEstadisticas.php">Artículos</a></li>
               <li><a href="php/pdf/imprimir2.php">Imprimir Prueba</a></li>
