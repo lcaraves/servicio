@@ -132,7 +132,7 @@
           </div>
           <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#altaCliente">
               <span class="glyphicon glyphicon-plus"></span> 
-            </button> 
+          </button> 
         </div><!-- end div form-group -->    
       </div>    
       </br>

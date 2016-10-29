@@ -14,6 +14,27 @@
                 <p class="col-sm-8"><small><strong>*</strong>Campos Obligatorios</small></p>
               </div>
               <div class="row form-group">
+                <?php 
+                   require '../../php/conexion.php';
+                   $consultaClientes = "SELECT * FROM clientes c ORDER BY c.idCliente DESC";
+                   $resultadosCli = mysqli_query($conexion, $consultaClientes) or die("PROBLEMA CON LA CONSULTA DE CLIENTES."); 
+                  ?>
+                <label for="" class="control-label col-sm-3">* Clientes</label>
+                <div class="col-sm-6">
+                  <select name="idCliente" class="form-control clientes" style="width: 100%">
+                    <option value=""></option>
+                    <?php while ($row = mysqli_fetch_array($resultadosCli)){ ?> 
+                      <option value="<?php echo $row['idCliente'] ?>"><?php echo $row['nombre'] ." ". $row['apellido']."   - Tel: ( ". $row['telefono']." ) " ?></option>
+                    <?php 
+                     }     
+                    ?>
+                  </select> 
+                </div>
+                <button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#altaCliente">
+                    <span class="glyphicon glyphicon-plus"></span> 
+                </button>
+              </div>
+              <div class="row form-group">
                 <label for="" class="control-label col-sm-3">* Producto</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" name="producto_pedido" placeholder="Escriba el Producto">
@@ -35,6 +56,22 @@
                 <label for="" class="control-label col-sm-3">Precio</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" name="precio_pedido" placeholder="Escriba el precio">
+                </div>
+              </div>
+              <div class="row form-group">
+                <label for="" class="control-label col-sm-3">Confirmación</label>
+                <div class="col-sm-6">
+                  <select name="confirmacion_pedido" id="" class="form-control">
+                    <option value=""></option>
+                    <option value="Si">Si</option>
+                    <option value="No">NO</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row form-group">
+                <label for="" class="control-label col-sm-3">Seña</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="senia_pedido" placeholder="Escriba la Señaa entregar">
                 </div>
               </div>
                <div class="row form-group">

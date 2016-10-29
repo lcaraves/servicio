@@ -64,14 +64,16 @@
 			</div>
 		<?php	
 		} else {
-			$consulta = "INSERT INTO pedidocliente (productoPedido, fechaPedido, numeroserie, precio, fechaConfirmacion , observacion) 
+			$consulta = "INSERT INTO pedidocliente (productoPedido, fechaPedido, numeroserie, precio, confirmacion, fechaConfirmacion , observacion, idCliente) 
 							VALUES (
 							'$producto_pedido',
 							'$fecha_pedido',
 							'$nroserie_pedido',
 							'$precio_pedido',
+							'$_REQUEST[confirmacion_pedido]',
 							'$fecha_confirmacion_pedido',
-							'$observacion_pedido')";
+							'$observacion_pedido',
+							'$_REQUEST[idCliente]')";
 			mysqli_query($conexion, $consulta) or die("Problemas: Consulta --> ALTA DE PEDIDO DE CLIENTE".mysqli_error($conexion));
 			mysqli_close($conexion);
 			$msjs [] = "<br> Alta de <strong>Pedido</strong> realizada con Éxito! </br>";
