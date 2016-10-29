@@ -83,7 +83,7 @@
 	              <li><a href="php/pdf/imprimir2.php">Imprimir Prueba</a></li>
 	              <li role="separator" class="divider"></li>
 	              <li>
-	                <a href="php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
+	                <a href="../../php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>
 	              </li>
 	            </ul>
 	          </div>

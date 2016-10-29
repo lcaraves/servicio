@@ -68,6 +68,9 @@
               <li><a href="../presupuesto/presupuestos.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</a></li>
               <li><a href="listadoventaservicio.php">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
+              <li>
+              <a href="views/pedidocliente/pedidocliente.php">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Clientes</a></li>
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="../estadisticas/notebookEstadisticas.php">Artículo</a></li>
               <li role="separator" class="divider"></li>
