@@ -42,6 +42,14 @@
 		$fecha_confirmacion_pedido = '0000-00-00';
 	}
 
+	if (!empty($_REQUEST['senia_pedido'])) {
+		if (strlen($_REQUEST['senia_pedido']) > 10) {
+		$errors[] = "</br>El nro de presupuesto debe ser menor que 10 caracteres.";
+		}else {$senia_pedido = trim($_REQUEST['senia_pedido']);}
+	} else {
+		$senia_pedido = 'Sin Seña';
+	}
+
 	if (!empty($_REQUEST['observacion_pedido'])) {
 		if (strlen($_REQUEST['observacion_pedido']) > 100) {
 		$errors[] = "</br>El nro de presupuesto debe ser menor que 100 caracteres.";
@@ -64,7 +72,7 @@
 			</div>
 		<?php	
 		} else {
-			$consulta = "INSERT INTO pedidocliente (productoPedido, fechaPedido, numeroserie, precio, confirmacion, fechaConfirmacion , observacion, idCliente) 
+			$consulta = "INSERT INTO pedidocliente (productoPedido, fechaPedido, numeroserie, precio, confirmacion, fechaConfirmacion , observacion, senia, idCliente) 
 							VALUES (
 							'$producto_pedido',
 							'$fecha_pedido',
@@ -73,6 +81,7 @@
 							'$_REQUEST[confirmacion_pedido]',
 							'$fecha_confirmacion_pedido',
 							'$observacion_pedido',
+							'$senia_pedido',
 							'$_REQUEST[idCliente]')";
 			mysqli_query($conexion, $consulta) or die("Problemas: Consulta --> ALTA DE PEDIDO DE CLIENTE".mysqli_error($conexion));
 			mysqli_close($conexion);

@@ -24,8 +24,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-	<!-- js/pedidocliente.js -->
-  	<script type="text/javascript" src="../../js/pedidocliente/pedidocliente.js"></script>
+	
   	<!-- Select2 -->
   	<script type="text/javascript" src="../../js/select2/js/select2.full.js"></script>
   	<script type="text/javascript" src="../../js/select2/js/select2.full.min.js"></script>
@@ -33,6 +32,8 @@
   	<script type="text/javascript" src="../../js/select2/js/select2.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="../../js/select2/css/select2.css" media="screen">
   	<link rel="stylesheet" type="text/css" href="../../js/select2/css/select2.min.css" media="screen">
+  	<!-- js/pedidocliente.js -->
+  	<script type="text/javascript" src="../../js/pedidocliente/pedidocliente.js"></script>
 </head>
 <body>
 	<?php 
@@ -111,7 +112,7 @@
 	   	  <!-- Contenido de los Tab #servicio Tecnico -->
 	   	  <?php 
 	   	    require_once '../../php/conexion.php';
-	   	    $consultaPedCliST = "SELECT * FROM pedidocliente pc WHERE pc.confirmacion='' ORDER BY pc.idPedidoCliente DESC LIMIT 100";
+	   	    $consultaPedCliST = "SELECT * FROM pedidocliente pc, clientes c WHERE pc.idCliente=c.idCliente AND pc.confirmacion='' ORDER BY pc.idPedidoCliente DESC LIMIT 100";
 	   	    $resultPedCliST = mysqli_query($conexion, $consultaPedCliST) or die("PROBLEMA CON LA CONSULTA DE Pedido de Productos de los Clientes al Servicio Tecnico.");
 	   	   ?>
 	   	  <div role="tabpanel" class="tab-pane active" id="pedidocliente">
@@ -140,23 +141,25 @@
 	   	            <th>Fecha Pedido</th>
 	   	            <th>Nº Serie</th>
 	   	            <th>Precio</th>
+	   	            <th>Confirmación</th>
 	   	            <th>Fecha Confirmación</th>
+	   	            <th>Entrega</th>
 	   	            <th>Observación</th>
-	   	            <th></th>
+	   	            <th>Acción</th>
 	   	          </tr>
 	   	        </thead>
 	   	          <?php while ($row = mysqli_fetch_array($resultPedCliST)){ ?>
 	   	          <tbody class="buscar1">
 	   	           <tr id="<?php echo $row['idPedidoCliente'] ?>">
 	   	             <td id="id_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['idPedidoCliente'] ?> </td>
-	   	             <td></td>
-	   	             <td id="articulo_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['productoPedido']); ?> </td>
-	   	             <td id="fecha_<?php echo $row['idPedidoCliente'] ?>"> <?php echo date('d-m-Y',strtotime($row['fechaPedido'])) ?> </td>
-	   	             <td id="estado_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['numeroSerie'] ?> </td>
+	   	             <td> <?php echo $row['nombre'] ."  ".$row['apellido'] ?> </td>
+	   	             <td id="producto_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['productoPedido']); ?> </td>
+	   	             <td id="fechapedido_<?php echo $row['idPedidoCliente'] ?>"> <?php echo date('d-m-Y',strtotime($row['fechaPedido'])) ?> </td>
+	   	             <td id="nroserie_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['numeroSerie'] ?> </td>
 	   	             <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['precio']) ?> </td>
-	   	             <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['confirmacion']) ?> </td>
-	   	             <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo ""?> </td>
-	   	             <td id="fecha_confirmacion_<?php echo $row['fechaConfirmacion'] ?>">
+	   	             <td id="confirmacion_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['confirmacion']) ?> </td>
+	   	             <td id="senia_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['senia']?> </td>
+	   	             <td id="fecha_confirmacion_<?php echo $row['idPedidoCliente'] ?>">
 	   	               <?php 
 	   	               if ('0000-00-00' == $row['fechaConfirmacion']) {
 	   	                 echo "Sin Fecha de Confirmacion";
@@ -177,7 +180,7 @@
 	   	                     </button>
 	   	                     <ul class="dropdown-menu">
 	   	                       <li data-toggle="modal" data-target="#modificarPedido">
-	   	                           <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+	   	                           <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoCliente'] ?>">
 	   	                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
 	   	                           </a>
 	   	                       </li>  
@@ -197,7 +200,7 @@
 	   	  <div role="tabpanel" class="tab-pane" id="confirmados">
 	   	    <!-- Contenido de los Tab #devolvio producto a ventas -->
 	   	    <?php 
-	   	      $consultaPedCon = "SELECT * FROM pedidocliente pc WHERE pc.confirmacion='Si' ORDER BY pc.idPedidoCliente DESC LIMIT 100";
+	   	      $consultaPedCon = "SELECT * FROM pedidocliente pc, clientes c WHERE pc.idCliente=c.idCliente AND pc.confirmacion='Si' ORDER BY pc.idPedidoCliente DESC LIMIT 100";
 	   	      $resultPedCon = mysqli_query($conexion, $consultaPedCon) or die("PROBLEMA CON LA CONSULTA DE Pedido Devueltos al Area de Ventas.");
 	   	     ?>
 	   	    <br>
@@ -226,7 +229,7 @@
 	   	            <th>Nº Serie</th>
 	   	            <th>Precio</th>
 	   	            <th>Confirmacion</th>
-	   	            <th>Seña</th>
+	   	            <th>Entrega</th>
 	   	            <th>Fecha Confirmación</th>
 	   	            <th>Observación</th>
 	   	            <th>Acción</th>
@@ -236,14 +239,14 @@
 	   	          <tbody class="buscar2">
 	   	            <tr id="<?php echo $row['idPedidoCliente'] ?>">
 	   	              <td id="id_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['idPedidoCliente'] ?> </td>
-	   	              <td></td>
-	   	              <td id="articulo_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['productoPedido']); ?> </td>
-	   	              <td id="fecha_<?php echo $row['idPedidoCliente'] ?>"> <?php echo date('d-m-Y',strtotime($row['fechaPedido'])) ?> </td>
-	   	              <td id="estado_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['numeroSerie'] ?> </td>
+	   	              <td> <?php echo $row['nombre'] ."  ".$row['apellido'] ?> </td>
+	   	              <td id="producto_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['productoPedido']); ?> </td>
+	   	              <td id="fechapedido_<?php echo $row['idPedidoCliente'] ?>"> <?php echo date('d-m-Y',strtotime($row['fechaPedido'])) ?> </td>
+	   	              <td id="nroserie_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['numeroSerie'] ?> </td>
 	   	              <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['precio']) ?> </td>
-	   	              <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['confirmacion']) ?> </td>
-	   	              <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo ""?> </td>
-	   	              <td id="fecha_confirmacion_<?php echo $row['fechaConfirmacion'] ?>">
+	   	              <td id="confirmacion_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['confirmacion']) ?> </td>
+	   	              <td id="senia_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['senia']?> </td>
+	   	              <td id="fecha_confirmacion_<?php echo $row['idPedidoCliente'] ?>">
 	   	                <?php 
 	   	                if ('0000-00-00' == $row['fechaConfirmacion']) {
 	   	                  echo "Sin Fecha de Confirmacion";
@@ -264,7 +267,7 @@
 	   	                      </button>
 	   	                      <ul class="dropdown-menu">
 	   	                        <li data-toggle="modal" data-target="#modificarPedido">
-	   	                            <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+	   	                            <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoCliente'] ?>">
 	   	                              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
 	   	                            </a>
 	   	                        </li>  
@@ -284,7 +287,7 @@
 	   	  <div role="tabpanel" class="tab-pane" id="NoConfirmados">
 	   	    <!-- Contenido de los Tab #vendio producto al cliente -->
 	   	    <?php 
-	   	      $consultaPedNoCon = "SELECT * FROM pedidocliente pc WHERE pc.confirmacion = 'No' ORDER BY pc.idPedidoCliente DESC LIMIT 100";
+	   	      $consultaPedNoCon = "SELECT * FROM pedidocliente pc, clientes c WHERE pc.idCliente=c.idCliente AND pc.confirmacion = 'No' ORDER BY pc.idPedidoCliente DESC LIMIT 100";
 	   	      $resultPedNoCon = mysqli_query($conexion, $consultaPedNoCon) or die("PROBLEMA CON LA CONSULTA DE Pedido de Productos Vendidos .");
 	   	     ?>
 	   	    <br>
@@ -313,7 +316,7 @@
 	   	           <th>Nº Serie</th>
 	   	           <th>Precio</th>
 	   	           <th>Confirmacion</th>
-	   	           <th>Seña</th>
+	   	           <th>Entrega</th>
 	   	           <th>Fecha Confirmación</th>
 	   	           <th>Observación</th>
 	   	           <th>Acción</th>
@@ -323,14 +326,14 @@
 	   	         <tbody class="buscar2">
 	   	           <tr id="<?php echo $row['idPedidoCliente'] ?>">
 	   	             <td id="id_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['idPedidoCliente'] ?> </td>
-	   	             <td></td>
-	   	             <td id="articulo_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['productoPedido']); ?> </td>
-	   	             <td id="fecha_<?php echo $row['idPedidoCliente'] ?>"> <?php echo date('d-m-Y',strtotime($row['fechaPedido'])) ?> </td>
-	   	             <td id="estado_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['numeroSerie'] ?> </td>
+	   	             <td> <?php echo $row['nombre'] ."  ".$row['apellido'] ?> </td>
+	   	             <td id="producto_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['productoPedido']); ?> </td>
+	   	             <td id="fechapedido_<?php echo $row['idPedidoCliente'] ?>"> <?php echo date('d-m-Y',strtotime($row['fechaPedido'])) ?> </td>
+	   	             <td id="nroserie_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['numeroSerie'] ?> </td>
 	   	             <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['precio']) ?> </td>
-	   	             <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['confirmacion']) ?> </td>
-	   	             <td id="precio_<?php echo $row['idPedidoCliente'] ?>"> <?php echo ""?> </td>
-	   	             <td id="fecha_confirmacion_<?php echo $row['fechaConfirmacion'] ?>">
+	   	             <td id="confirmacion_<?php echo $row['idPedidoCliente'] ?>"> <?php echo trim($row['confirmacion']) ?> </td>
+	   	             <td id="senia_<?php echo $row['idPedidoCliente'] ?>"> <?php echo $row['senia']?> </td>
+	   	             <td id="fecha_confirmacion_<?php echo $row['idPedidoCliente'] ?>">
 	   	               <?php 
 	   	               if ('0000-00-00' == $row['fechaConfirmacion']) {
 	   	                 echo "Sin Fecha de Confirmacion";
@@ -351,7 +354,7 @@
 	   	                     </button>
 	   	                     <ul class="dropdown-menu">
 	   	                       <li data-toggle="modal" data-target="#modificarPedido">
-	   	                           <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoServicio'] ?>">
+	   	                           <a href="#" class="modificarPedido" id="<?php echo $row['idPedidoCliente'] ?>">
 	   	                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modificar
 	   	                           </a>
 	   	                       </li>  
@@ -389,3 +392,4 @@
 </html>
 <?php include("modal/modal_agregar_pedido.php");?>
 <?php include("modal/modal_agregar_clientes.php");?>
+<?php include("modal/modal_modificar_pedido.php");?>
