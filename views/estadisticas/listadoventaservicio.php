@@ -69,7 +69,7 @@
               <li><a href="listadoventaservicio.php">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Ventas</a></li>
               <li>
-              <a href="views/pedidocliente/pedidocliente.php">
+              <a href="../pedidocliente/pedidocliente.php">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Clientes</a></li>
               <li class="dropdown-header">Estadisticas</li>
               <li><a href="../estadisticas/notebookEstadisticas.php">Artículo</a></li>

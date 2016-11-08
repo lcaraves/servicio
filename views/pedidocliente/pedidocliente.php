@@ -81,7 +81,6 @@
 	              <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pedido Clientes</a></li>
 	              <li class="dropdown-header">Estadisticas</li>
 	              <li><a href="../../views/estadisticas/notebookEstadisticas.php">Artículos</a></li>
-	              <li><a href="php/pdf/imprimir2.php">Imprimir Prueba</a></li>
 	              <li role="separator" class="divider"></li>
 	              <li>
 	                <a href="../../php/inicioSesion/logeo.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a>

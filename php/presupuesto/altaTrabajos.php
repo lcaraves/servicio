@@ -39,17 +39,7 @@ if (isset($_REQUEST['observaciones'])) {
 //---------------
 //Control Errores
 if (isset($errors)) {
-	?>
-	<div class="alert alert-danger" role="alert">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong>Error!</strong> 
-		<?php
-			foreach ($errors as $error) {
-				echo $error;
-			}
-		?>
-	</div>
-	<?php
+	include_once '../validacion/mensajeError.php';
 }else{
 	$consulta = "INSERT INTO trabajos (idProducto, trabajoRealizado, cambioProducto, observaciones, garantia, presupuesto) 
 					VALUES (
@@ -65,16 +55,6 @@ if (isset($errors)) {
 }
 
 if (isset($msjs)) {
-	?>
-		<div class="alert alert-success" role="alert">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong> ¡Bien hecho!</strong>
-				<?php
-					foreach ($msjs as $msj) {
-						echo $msj;
-					}
-				?>
-		</div>
-		<?php
-			}
+	include_once '../validacion/mensajeConfirmacion.php';
+}
  ?>

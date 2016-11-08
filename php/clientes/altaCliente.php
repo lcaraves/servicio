@@ -103,17 +103,7 @@
 
 	//Control de Errores
 	if (isset($errors)) {
-	?>
-		<div class="alert alert-danger" role="alert">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong> Error!!</strong> 
-			<?php
-				foreach ($errors as $error) {
-					echo $error;
-				}
-			?>
-		</div>
-	<?php 
+		include '../validacion/mensajeError.php';
 	}else{
 		$consulta = "INSERT INTO clientes (nombre, apellido, direccion, telefono, email, localidad, provincia) 
 					VALUES (
@@ -129,17 +119,7 @@
 		mysqli_close($conexion);
 
 		if (isset($msjs)) {
-			?>
-				<div class="alert alert-success" role="alert">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong> Bien Hecho!!</strong> 
-					<?php
-						foreach ($msjs as $msj) {
-							echo $msj;
-						}
-					?>
-				</div>
-			<?php 	
+			include_once '../validacion/mensajeConfirmacion.php';	
 			}	
 	}
 	

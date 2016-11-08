@@ -36,35 +36,13 @@
 			}
 		
 		if (isset($errors)){
-?>
-			<div class="alert alert-danger" role="alert">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					<strong>Error!</strong> 
-					<?php
-						foreach ($errors as $error) {
-								echo $error;
-							}
-						?>
-			</div>
-			<?php
-			}
-			if (isset($msj)){
-				
-				?>
-				<div class="alert alert-success" role="alert">
-						<button type="button" class="close" data-dismiss="alert">&times;</button><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-						<strong>¡Bien hecho!</strong>
-						<?php
-							foreach ($msj as $msjs) {
-									echo $msjs;
-								}
-							?>
-				</div>
-			<?php
-				}
-				mysqli_close($conexion);
-			?>
+			include_once '../validacion/mensajeError.php';
+		}
+		if (isset($msj)){
+			include_once '../validacion/mensajeConfirmacion.php';	
+		}
+		mysqli_close($conexion);
+	?>
 		
 	
 

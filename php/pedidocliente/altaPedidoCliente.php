@@ -60,43 +60,25 @@
 
 
 	if (isset($errors)) {
-	?>	
-			<div class="alert alert-danger" role="alert">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong> Error!!</strong> 
-				<?php
-					foreach ($errors as $error) {
-						echo $error;
-					}
-				?>
-			</div>
-		<?php	
-		} else {
-			$consulta = "INSERT INTO pedidocliente (productoPedido, fechaPedido, numeroserie, precio, confirmacion, fechaConfirmacion , observacion, senia, idCliente) 
-							VALUES (
-							'$producto_pedido',
-							'$fecha_pedido',
-							'$nroserie_pedido',
-							'$precio_pedido',
-							'$_REQUEST[confirmacion_pedido]',
-							'$fecha_confirmacion_pedido',
-							'$observacion_pedido',
-							'$senia_pedido',
-							'$_REQUEST[idCliente]')";
-			mysqli_query($conexion, $consulta) or die("Problemas: Consulta --> ALTA DE PEDIDO DE CLIENTE".mysqli_error($conexion));
-			mysqli_close($conexion);
-			$msjs [] = "<br> Alta de <strong>Pedido</strong> realizada con Éxito! </br>";
-		}
+		include_once '../validacion/mensajeError.php';
+	} else {
+		$consulta = "INSERT INTO pedidocliente (productoPedido, fechaPedido, numeroserie, precio, confirmacion, fechaConfirmacion , observacion, senia, idCliente) 
+						VALUES (
+						'$producto_pedido',
+						'$fecha_pedido',
+						'$nroserie_pedido',
+						'$precio_pedido',
+						'$_REQUEST[confirmacion_pedido]',
+						'$fecha_confirmacion_pedido',
+						'$observacion_pedido',
+						'$senia_pedido',
+						'$_REQUEST[idCliente]')";
+		mysqli_query($conexion, $consulta) or die("Problemas: Consulta --> ALTA DE PEDIDO DE CLIENTE".mysqli_error($conexion));
+		mysqli_close($conexion);
+		$msjs [] = "<br> Alta de <strong>Pedido</strong> realizada con Éxito! </br>";
+	}
 
 	if (isset($msjs)) {
-		?>
-			<div class="alert alert-success" role="alert">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong>¡Bien hecho!</strong>
-					<?php
-						foreach ($msjs as $msj) {
-						echo $msj;
-					}
-					?>
-			</div>
-	<?php } ?>
+		include_once '../validacion/mensajeConfirmacion.php';	
+	} 
+?>

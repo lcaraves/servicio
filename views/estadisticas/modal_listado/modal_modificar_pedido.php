@@ -14,7 +14,7 @@
               <div class="row form-group">
                 <label for="" class="control-label col-sm-3">*Artículo</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" name="articulo_pedido" id="articulo_pedido_update" required>
+                  <input type="text" class="form-control" name="articulo_pedido" id="articulo_pedido_update">
                 </div>
               </div>
               <div class="row form-group">

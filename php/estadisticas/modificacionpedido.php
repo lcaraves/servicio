@@ -6,6 +6,14 @@
 	$nropresupuesto_pedido = trim($_REQUEST['nropresupuesto_pedido']);
 	$estado_pedido = $_REQUEST['estado_pedido'];
 	
+	if (!empty($articulo_pedido)) {
+		if (strlen($articulo_pedido)>40) {
+			$errors[] = "</br> El <strong>Articulo</strong> debe ser menor que 40 caracteres. </br>";
+		}
+	}else{
+			$errors[] = "</br> El campo <strong>Articulo</strong> esta vacio.";
+	}
+
 
 	if (empty($_REQUEST['fecha_salida_pedido'])) {
 		$fecha_salida_pedido = '0000-00-00';
@@ -19,17 +27,7 @@
 
 	//Control --> Validacion
 	if (isset($errors)) {
-		?>
-		<div class="alert alert-danger" role="alert">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><strong> Error!!</strong> 
-			<?php
-				foreach ($errors as $error) {
-					echo $error;
-				}
-			?>
-		</div>
-	<?php	
+		include_once '../validacion/mensajeError.php';	
 	} else {
 		$consulta = "UPDATE pedidoservicio SET 
 					articulo_pedido ='".$articulo_pedido."', 

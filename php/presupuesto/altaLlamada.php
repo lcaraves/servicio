@@ -41,43 +41,23 @@
 		
 	//Para Verificar los Errores.
 	if (isset($errors)){
-	?>
-		<div class="alert alert-danger" role="alert">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<strong>Error!</strong> 
-			<?php
-				foreach ($errors as $error) {
-					echo $error;
-				}
-			?>
-		</div>
-		<?php
-			}else{
-				$consulta = "INSERT INTO llamadas (idProducto, notificado, observaciones, fechaHoraLlamada ) 
-								VALUES (
-								'$_REQUEST[idProducto]',
-								'$notificado',
-								'$observaciones',
-								'$_REQUEST[fecha_hora]')";
-				mysqli_query($conexion, $consulta) or die("Problemas con la consulta para insert Llamadas Nuevos".mysqli_error($conexion));
-				$msjs [] = "</br> Los datos han sido guardados satisfactoriamente.";
-				mysqli_close($conexion);
-			}
+		include_once '../validacion/mensajeError.php';	
+	}else{
+		$consulta = "INSERT INTO llamadas (idProducto, notificado, observaciones, fechaHoraLlamada ) 
+						VALUES (
+						'$_REQUEST[idProducto]',
+						'$notificado',
+						'$observaciones',
+						'$_REQUEST[fecha_hora]')";
+		mysqli_query($conexion, $consulta) or die("Problemas con la consulta para insert Llamadas Nuevos".mysqli_error($conexion));
+		$msjs [] = "</br> Los datos han sido guardados satisfactoriamente.";
+		mysqli_close($conexion);
+	}
 			
-		if (isset($msjs)){
-		?>
-			<div class="alert alert-success" role="alert">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strong>¡Bien hecho!</strong>
-					<?php
-						foreach ($msjs as $msj) {
-							echo $msj;
-						}
-					?>
-			</div>
-			<?php
-				}
-			?>
+	if (isset($msjs)){
+		include_once '../validacion/mensajeConfirmacion.php';
+	}
+?>
 	
 
 
